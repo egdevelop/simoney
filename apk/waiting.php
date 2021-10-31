@@ -1,3 +1,7 @@
+<?php
+include "server/header.php";
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,19 +43,51 @@
         </a>
     </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
-    var url = "<?= $_GET['href'] ?>"; // membuat url tujuan
-    var count = 3; // membuat hitungan kedalam detik
-    function countDown() {
-        if (count > 0) {
-            count--;
-            var waktu = count + 1;
-            setTimeout("countDown()", 1000);
-        } else {
-            window.location.href = url;
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var type = url.searchParams.get("type");
+    var url2 = "<?= $_GET['href'] ?>" // membuat url tujuan
+
+setInterval(()=>{
+if(type == 'sinebeng'){
+             $.ajax({
+                url: "server/cek-nebeng.php",
+                type: "POST",
+                data: {
+                    userid: <?php echo $_SESSION['userid'] ?>,
+                },
+                success: function(response) {
+                    if(response == '1'){
+                        console.log(response);
+                        window.location.href = url2 + "&type=sinebeng";
+                    }else{
+                        console.log(response);
+                    }
+                },
+                error: function() {
+                    alert("error");
+                }
+
+            });
+        }else{
+            console.log(type);
         }
-    }
-    countDown();
+},1000);
+
+
+    // 
+    // var count = 3; // membuat hitungan kedalam detik
+    // function countDown(a) {
+    //     if (count > a) {
+    //         count--;
+    //         setTimeout("countDown()", 1000);
+    //     } else {
+    //         window.location.href = url;
+    //     }
+    // }
+    // countDown();
 </script>
 
 </html>

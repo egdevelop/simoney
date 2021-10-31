@@ -2,11 +2,28 @@
 include "server/header.php";
 
 $status = mysqli_query($koneksi, "SELECT status FROM sinebeng WHERE userid='$_SESSION[userid]'");
+$status1 = mysqli_query($koneksi, "SELECT nebeng_status FROM user WHERE userid='$_SESSION[userid]'");
+$data = mysqli_query($koneksi, "SELECT driverid,clientid FROM nebeng_client WHERE clientid='$_SESSION[userid]' OR driverid='$_SESSION[userid]'");
 $s = mysqli_fetch_array($status);
-if ($status != null) {
+$s1 = mysqli_fetch_array($status1);
+$r = mysqli_fetch_array($data);
+if ($s != null) {
     if ($s['status'] == '1') {
         header("location:nebeng-driver.php");
     }
+    if ($s['status'] == '2') {
+        $kode = $r['clientid'];
+        header("location:chat.php?kode=$kode&type=sinebeng");
+    }
+}
+
+if ($status1 != null) {
+    if ($s1['nebeng_status'] == '1') {
+        $kode = $r['driverid'];
+        header("location:chat.php?kode=$kode&type=sinebeng");
+    }
+}else{
+    var_dump($status1);
 }
 ?>
 

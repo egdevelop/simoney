@@ -41,10 +41,11 @@ $ruser = mysqli_fetch_array($dataUser);
             </div>
             <p style="font-weight: 600;">Rp.<?= $ruser['saldo'] ?></p>
         </div>
-        <div id="tunai" onclick="paymentToggle('tunai','simoney')" style="font-weight: 600; color: #b0b0b0;" class="flex mt-3 mb-5 align-items-tengah">
+        <div style="display: none;" id="tunai" onclick="paymentToggle('tunai','simoney')" style="font-weight: 600; color: #b0b0b0;" class="flex mt-3 mb-5 align-items-tengah">
             <i class="ri-copper-coin-line"></i>
             <span class="ml-3">Tunai</span>
         </div>
+        <br>
         <span style="font-weight: 500;" class="mb-3">Nominal</span>
         <div class="flex align-items-tengah mb-10 mt-3">
             <div class="badge-biru mr-3">

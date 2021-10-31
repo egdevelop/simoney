@@ -1,3 +1,9 @@
+<?php
+include "server/header.php";
+
+$kode = $_GET['kode'];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,17 +34,18 @@
         </div>
         <div class="chat-box bg-abu-muda"></div>
         <form action="#" class="typing-area">
-            <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $kode; ?>" hidden>
+            <input type="text" class="you_id" name="you_id" value="<?php echo $kode; ?>" hidden>
             <input type="text" name="message" class="input-field" placeholder="Ketikkan Pesan..." autocomplete="off">
             <button><img src="assets/img/telegram.png" alt=""></button>
         </form>
-        <a style="text-decoration: none;" href="nitip-kurir.php">
+        <a style="text-decoration: none;" id="selesai">
             <div class="button-biru-2 btn-nebeng text-align-tengah mt-10 mb-20">
                 Selesaikan Orderan
             </div>
         </a>
+    </div>
         <div class="nav">
-            <a class="mr-10 nav-act" href="dashboard.php">
+            <a class="mr-10 abu-nav" href="dashboard.php">
                 <i class="ri-dashboard-line"></i>
             </a>
             <a class="mr-10 abu-nav" href="nebeng.php">
@@ -58,7 +65,7 @@
 </body>
 <script>
     const form = document.querySelector(".typing-area"),
-        incoming_id = form.querySelector(".incoming_id").value,
+        you_id = form.querySelector(".you_id").value,
         inputField = form.querySelector(".input-field"),
         sendBtn = form.querySelector("button"),
         chatBox = document.querySelector(".chat-box");
@@ -78,7 +85,7 @@
 
     sendBtn.onclick = () => {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "insert-chat.php", true);
+        xhr.open("POST", "server/insert-chat.php", true);
         xhr.onload = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
@@ -100,7 +107,7 @@
 
     setInterval(() => {
         let xhr = new XMLHttpRequest();
-        xhr.open("POST", "get-chat.php", true);
+        xhr.open("POST", "server/get-chat.php", true);
         xhr.onload = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
@@ -113,12 +120,22 @@
             }
         }
         xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhr.send("incoming_id=" + incoming_id);
+        xhr.send("you_id=" + you_id);
     }, 500);
 
     function scrollToBottom() {
         chatBox.scrollTop = chatBox.scrollHeight;
     }
+</script>
+<script>
+    var url_string = window.location.href;
+    var url = new URL(url_string);
+    var type = url.searchParams.get("type");
+
+    if(type ==  'sinebeng'){
+        document.getElementById("selesai").href = "server/selesai-nebeng.php";
+    }
+
 </script>
 
 </html>

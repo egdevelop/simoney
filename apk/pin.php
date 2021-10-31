@@ -138,7 +138,7 @@ function pushAction(){
                 data: datas,
                 success: function(response) {
                     if(response != ''){
-                        window.location.href = "succes-bayar.php?type="+response;
+                        window.location.href = "succes-bayar.php?href="+response;
                     }else{
                         console.log(response);
                     }

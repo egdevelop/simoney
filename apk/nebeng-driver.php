@@ -52,7 +52,7 @@ $jumlah = mysqli_num_rows($listClient);
                     <p style="font-size:3vw; color: #9e9e9e;">1 Menit yang lalu</p>
                     <div style="margin-left:2vw; margin-right:2vw; margin-top:3vw;" class="flex justify-content-between">
                         <div class="nebeng-btn-biru">
-                            <a style="text-decoration: none; color:#fff;" href="waiting.php?href=chat.php?chatid=<?= $r['chatid'] ?>">
+                            <a style="text-decoration: none; color:#fff;" href="server/nebeng-driver.php?clientid=<?php echo $r['clientid'] ?>">
                                 <i class="ri-check-line"></i>
                             </a>
                         </div>

@@ -40,7 +40,7 @@
     </div>
 </body>
 <script>
-    var url = "<?php echo $_GET['type']; ?>" // membuat url tujuan
+    var url = "<?php echo $_GET['href']; ?>" // membuat url tujuan
     var count = 3; // membuat hitungan kedalam detik
     function countDown() {
         if (count > 0) {
@@ -48,7 +48,7 @@
             var waktu = count + 1;
             setTimeout("countDown()", 1000);
         } else {
-            window.location.href = url;
+            window.location.href = url+ "&type=sinebeng";
         }
     }
     countDown();

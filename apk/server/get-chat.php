@@ -1,27 +1,25 @@
 <?php 
     session_start();
-    if(isset($_SESSION['user_id'])){
-        include_once "server/koneksi.php";
-        $outgoing_id = $_SESSION['user_id'];
-        $incoming_id = mysqli_real_escape_string($koneksi, $_POST['incoming_id']);
+    if(isset($_SESSION['userid'])){
+        include_once "koneksi.php";
+        $me_id = $_SESSION['userid'];
+        $you_id = mysqli_real_escape_string($koneksi, $_POST['you_id']);
         $output = "";
-        $sql = "SELECT * FROM messages LEFT JOIN user ON user.user_id = messages.outgoing_msg_id
-                WHERE (outgoing_msg_id = {$outgoing_id} AND incoming_msg_id = {$incoming_id})
-                OR (outgoing_msg_id = {$incoming_id} AND incoming_msg_id = {$outgoing_id}) ORDER BY msg_id";
+        $sql = "SELECT * FROM chat WHERE user1 = '$me_id' AND user2 = '$you_id' OR user2 = '$me_id' AND user1 = '$you_id'";
         $query = mysqli_query($koneksi, $sql);
         if(mysqli_num_rows($query) > 0){
             while($row = mysqli_fetch_assoc($query)){
-                if($row['outgoing_msg_id'] === $outgoing_id){
+                if($row['user1'] === $me_id){
                     $output .= '<div class="chat outgoing">
                                 <div class="details">
-                                    <p>'. $row['msg'] .'</p>
+                                    <p>'. $row['pesan'] .'</p>
                                 </div>
                                 </div>';
                 }else{
                     $output .= '<div class="chat incoming">
-                                <img src="../../gambar/'.$row['poto'].'" alt="">
+                                <img src="assets/img/client.png" alt="client">
                                 <div class="details">
-                                    <p>'. $row['msg'] .'</p>
+                                    <p>'. $row['pesan'] .'</p>
                                 </div>
                                 </div>';
                 }
