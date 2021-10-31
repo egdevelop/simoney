@@ -1,11 +1,11 @@
 <?php 
     session_start();
-    if(isset($_SESSION['unique_id'])){
+    if(isset($_SESSION['user_id'])){
         include_once "server/koneksi.php";
-        $outgoing_id = $_SESSION['unique_id'];
+        $outgoing_id = $_SESSION['user_id'];
         $incoming_id = mysqli_real_escape_string($koneksi, $_POST['incoming_id']);
         $output = "";
-        $sql = "SELECT * FROM messages LEFT JOIN user ON user.unique_id = messages.outgoing_msg_id
+        $sql = "SELECT * FROM messages LEFT JOIN user ON user.user_id = messages.outgoing_msg_id
                 WHERE (outgoing_msg_id = {$outgoing_id} AND incoming_msg_id = {$incoming_id})
                 OR (outgoing_msg_id = {$incoming_id} AND incoming_msg_id = {$outgoing_id}) ORDER BY msg_id";
         $query = mysqli_query($koneksi, $sql);

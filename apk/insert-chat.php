@@ -1,8 +1,8 @@
 <?php 
     session_start();
-    if(isset($_SESSION['unique_id'])){
+    if(isset($_SESSION['user_id'])){
         include_once "server.php/koneksi.php";
-        $outgoing_id = $_SESSION['unique_id'];
+        $outgoing_id = $_SESSION['user_id'];
         $incoming_id = mysqli_real_escape_string($koneksi, $_POST['incoming_id']);
         $message = mysqli_real_escape_string($koneksi, $_POST['message']);
         if(!empty($message)){

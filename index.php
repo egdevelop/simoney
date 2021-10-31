@@ -51,7 +51,7 @@
                             </ul>
                         </div>
                         <form class="d-flex">
-                            <button class="btn btn-light" type="submit">Download</button>
+                            <a style="text-decoration: none; color:inherit;" href="SIMONEY.apk" class="btn btn-light" type="submit">Download</a>
                         </form>
                     </div>
                 </nav>
@@ -100,7 +100,7 @@
                     <p>SIMONEY adalah dompet digital yang mengatur pengeluaran dan pendapatan kamu secara sistematis,dengan 2 fitur tambahan yang akan membuatmu mendapatkan penghasilan tambahan secara mudah.</p>
                     <p>Daftar sekarang dan atur pengeluaranmu serta dapatkan penghasilan dengan memakai SIMONEY</p>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">Download Now <i class="fas fa-download"></i></button>
+                        <a style="text-decoration: none; color:inherit;" href="SIMONEY.apk" class="btn btn-outline-dark" type="submit">Download Now <i class="fas fa-download"></i></a>
                     </form>
                 </div>
             </div>
@@ -121,7 +121,7 @@
                         mengantar penumpang yang searah dari tujuan yang akan kamu tuju.</p>
                     <p>Kalian bisa memilih mau jadi apa untuk hari ini,apakah ingin mencari cuan ( driver ) atau ingin menumpang ke orang lain untuk mendatangi suatu tempat dengan membayar sesuai tarif yang di tentukan oleh si driver</p>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">Download Now <i class="fas fa-download"></i></button>
+                        <a style="text-decoration: none; color:inherit;" href="SIMONEY.apk" class="btn btn-outline-dark" type="submit">Download Now <i class="fas fa-download"></i></a>
                     </form>
                 </div>
             </div>
@@ -132,7 +132,7 @@
                     <p>
                         Kamu bisa memilih mau jadi apa untuk hari ini,apakah ingin mencari cuan dengan menjadi jasa titip atau hanya ingin menitip makanan ke orang lain dengan membayar upah yang sudah ditentukan.</p>
                     <form class="d-flex">
-                        <button class="btn btn-outline-dark" type="submit">Download Now <i class="fas fa-download"></i></button>
+                        <a style="text-decoration: none; color:inherit;" href="SIMONEY.apk" class="btn btn-outline-dark" type="submit">Download Now <i class="fas fa-download"></i></a>
                     </form>
                 </div>
                 <div class="col-md-6">
@@ -204,7 +204,7 @@
                     <h1 class="heading1-akses" style=" width: 60%;">Siapkan diri kamu bergabung dengan SIMONEY</h1>
                     <p class="desc-akses putih">Gunakan fasilitas kami dan rasakan keuntungannya</p>
                     <form class="d-flex">
-                        <button class="btn btn-light" type="submit">Download</button>
+                        <a style="text-decoration: none; color:inherit;" href="SIMONEY.apk" class="btn btn-light" type="submit">Download</a>
                     </form>
                 </div>
                 <div class="kanan">
