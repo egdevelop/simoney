@@ -31,7 +31,7 @@
         <a class="mr-10 badge-gradien-biru-2" href="sorry.php">
             <i class="ri-qr-scan-line"></i>
         </a>
-        <a class="mr-10 abu-nav" href="nitip.php">
+        <a class="mr-10 abu-nav" href="sorry.php">
             <i class="ri-open-arm-line"></i>
         </a>
         <a class="mr-10 abu-nav" href="profil.php">

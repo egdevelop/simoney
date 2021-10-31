@@ -1,14 +1,14 @@
 <?php
 include "server/header.php";
 
-$exist = mysqli_query($koneksi,"SELECT * FROM sinebeng WHERE userid='$_SESSION[userid]'");
+$exist = mysqli_query($koneksi, "SELECT * FROM sinebeng WHERE userid='$_SESSION[userid]'");
 $count = mysqli_num_rows($exist);
 
-if($count == 1){
-    $setOn = mysqli_query($koneksi,"UPDATE sinebeng SET status = '1' WHERE userid='$_SESSION[userid]'");
-    if($setOn){
+if ($count == 1) {
+    $setOn = mysqli_query($koneksi, "UPDATE sinebeng SET status = '1' WHERE userid='$_SESSION[userid]'");
+    if ($setOn) {
         header("location:nebeng-driver.php");
-    }else{
+    } else {
         header("location:nebeng-cuan.php");
     }
 }
@@ -89,7 +89,7 @@ if($count == 1){
         <a class="mr-10 badge-gradien-biru-2" href="sorry.php">
             <i class="ri-qr-scan-line"></i>
         </a>
-        <a class="mr-10 abu-nav" href="nitip.php">
+        <a class="mr-10 abu-nav" href="sorry.php">
             <i class="ri-open-arm-line"></i>
         </a>
         <a class="mr-10 abu-nav" href="profil.php">

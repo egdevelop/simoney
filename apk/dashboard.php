@@ -1,13 +1,14 @@
 <?php
 include "server/header.php";
 
-$dataUser = mysqli_query($koneksi ,"SELECT * FROM user WHERE userid = '$_SESSION[userid]'");
+$dataUser = mysqli_query($koneksi, "SELECT * FROM user WHERE userid = '$_SESSION[userid]'");
 $ruser = mysqli_fetch_array($dataUser);
 
-$dataHistory = mysqli_query($koneksi,"SELECT * FROM transaksi WHERE userid = '$_SESSION[userid]'");
+$dataHistory = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE userid = '$_SESSION[userid]'");
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -21,7 +22,7 @@ $dataHistory = mysqli_query($koneksi,"SELECT * FROM transaksi WHERE userid = '$_
     <div class="page">
         <div class="card-mobile mb-5">
             <p class="sub-text">Hi 👋</p>
-            <span style="font-weight:600;" class="sub-text mb-3"><?= $_SESSION['nama']?></span>
+            <span style="font-weight:600;" class="sub-text mb-3"><?= $_SESSION['nama'] ?></span>
             <a href="kartu.php">
                 <img style="width:80vw;" src="assets/img/card-polos.png" alt="">
             </a>
@@ -65,32 +66,32 @@ $dataHistory = mysqli_query($koneksi,"SELECT * FROM transaksi WHERE userid = '$_
             </div>
             <table class="table-trx">
                 <?php
-                    while($d = mysqli_fetch_array($dataHistory)){
-                        if($d['type'] == 0){
-                            $icon = "up";
-                            $des = "Uang Keluar dari Transfer";
-                        }else{
-                            $icon = "down";
-                            $des = "Uang Masuk dari Transfer";
-                        }
-                ?>
-                <tr>
-                    <td class="row-icon">
-                        <div class="badge-biru-muda-2">
-                            <i class="ri-arrow-<?= $icon ?>-s-line"></i>
-                        </div>
-                    </td>
-                    <td>
-                        <p class="trx-text mr-5"><?= $des ?></p>
-                        <p class="trx-time"><?= $d['tanggal'] ?></p>
-                    </td>
-                    <td>
-                        <p class="trx-time" id="jumlahtrx">Rp. <?= $d['jumlah'] ?></p>
-                    </td>
-                </tr>
-                <?php
+                while ($d = mysqli_fetch_array($dataHistory)) {
+                    if ($d['type'] == 0) {
+                        $icon = "up";
+                        $des = "Uang Keluar dari Transfer";
+                    } else {
+                        $icon = "down";
+                        $des = "Uang Masuk dari Transfer";
                     }
-                ?>  
+                ?>
+                    <tr>
+                        <td class="row-icon">
+                            <div class="badge-biru-muda-2">
+                                <i class="ri-arrow-<?= $icon ?>-s-line"></i>
+                            </div>
+                        </td>
+                        <td>
+                            <p class="trx-text mr-5"><?= $des ?></p>
+                            <p class="trx-time"><?= $d['tanggal'] ?></p>
+                        </td>
+                        <td>
+                            <p class="trx-time" id="jumlahtrx">Rp. <?= $d['jumlah'] ?></p>
+                        </td>
+                    </tr>
+                <?php
+                }
+                ?>
             </table>
         </div>
 
@@ -106,7 +107,7 @@ $dataHistory = mysqli_query($koneksi,"SELECT * FROM transaksi WHERE userid = '$_
         <a class="mr-10 badge-gradien-biru-2" href="sorry.php">
             <i class="ri-qr-scan-line"></i>
         </a>
-        <a class="mr-10 abu-nav" href="nitip.php">
+        <a class="mr-10 abu-nav" href="sorry.php">
             <i class="ri-open-arm-line"></i>
         </a>
         <a class="mr-10 abu-nav" href="profil.php">
@@ -116,12 +117,11 @@ $dataHistory = mysqli_query($koneksi,"SELECT * FROM transaksi WHERE userid = '$_
 </body>
 <script>
     function numberWithCommas(x) {
-    var parts = x.toString().split(".");
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
-    return parts.join(".");
-}
-document.getElementById("saldo").innerHTML = numberWithCommas(<?php echo $ruser['saldo'] ?>)
-
+        var parts = x.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return parts.join(".");
+    }
+    document.getElementById("saldo").innerHTML = numberWithCommas(<?php echo $ruser['saldo'] ?>)
 </script>
 
 </html>

@@ -1,7 +1,7 @@
 <?php
 include "server/header.php";
 
-$listClient = mysqli_query($koneksi,"SELECT * FROM nebeng_client WHERE driverid='$_SESSION[userid]'");
+$listClient = mysqli_query($koneksi, "SELECT * FROM nebeng_client WHERE driverid='$_SESSION[userid]'");
 $jumlah = mysqli_num_rows($listClient);
 ?>
 
@@ -23,9 +23,9 @@ $jumlah = mysqli_num_rows($listClient);
             <div class="text-align-tengah mb-5">
                 <div class="flex">
                     <div style="margin-right: 23vw;" class="badge-biru">
-                    <a href="server/offdriver.php" style="text-decoration: none; color:#fff;">
-                        <i style="font-size: 5vw; font-weight:600;" class="ri-shut-down-line"></i>
-                    </a>
+                        <a href="server/offdriver.php" style="text-decoration: none; color:#fff;">
+                            <i style="font-size: 5vw; font-weight:600;" class="ri-shut-down-line"></i>
+                        </a>
                     </div>
                     <span style="font-weight:700; font-size:5vw;">SINEBENG</span>
                 </div>
@@ -42,27 +42,27 @@ $jumlah = mysqli_num_rows($listClient);
                 <i class="ri-filter-3-line biru"></i>
             </div>
             <?php
-                while($r=mysqli_fetch_array($listClient)){
+            while ($r = mysqli_fetch_array($listClient)) {
 
-                
+
             ?>
-            <div class="card-nebeng align-items-tengah">
-                <img src="assets/img/client.png" alt="client">
-                <p style="font-weight: 600;"><?= $r['namac'] ?></p>
-                <p style="font-size:3vw; color: #9e9e9e;">1 Menit yang lalu</p>
-                <div style="margin-left:2vw; margin-right:2vw; margin-top:3vw;" class="flex justify-content-between">
-                    <div class="nebeng-btn-biru">
-                        <a style="text-decoration: none; color:#fff;" href="waiting.php?href=chat.php?chatid=<?= $r['chatid'] ?>">
-                        <i class="ri-check-line"></i>
-                        </a>
-                    </div>
-                    <div class="nebeng-btn-putih">
-                        <i class="ri-close-line"></i>
+                <div class="card-nebeng align-items-tengah">
+                    <img src="assets/img/client.png" alt="client">
+                    <p style="font-weight: 600;"><?= $r['namac'] ?></p>
+                    <p style="font-size:3vw; color: #9e9e9e;">1 Menit yang lalu</p>
+                    <div style="margin-left:2vw; margin-right:2vw; margin-top:3vw;" class="flex justify-content-between">
+                        <div class="nebeng-btn-biru">
+                            <a style="text-decoration: none; color:#fff;" href="waiting.php?href=chat.php?chatid=<?= $r['chatid'] ?>">
+                                <i class="ri-check-line"></i>
+                            </a>
+                        </div>
+                        <div class="nebeng-btn-putih">
+                            <i class="ri-close-line"></i>
+                        </div>
                     </div>
                 </div>
-            </div>
             <?php
-                }
+            }
             ?>
 
             <a style="text-decoration: none;" href="nebeng-cuan.php">
@@ -82,7 +82,7 @@ $jumlah = mysqli_num_rows($listClient);
         <a class="mr-10 badge-gradien-biru-2" href="sorry.php">
             <i class="ri-qr-scan-line"></i>
         </a>
-        <a class="mr-10 abu-nav" href="nitip.php">
+        <a class="mr-10 abu-nav" href="sorry.php">
             <i class="ri-open-arm-line"></i>
         </a>
         <a class="mr-10 abu-nav" href="profil.php">

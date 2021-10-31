@@ -1,7 +1,7 @@
 <?php
 include "server/header.php";
 
-$detailDriver = mysqli_query($koneksi,"SELECT * FROM sinebeng WHERE userid = '$_GET[driverid]'");
+$detailDriver = mysqli_query($koneksi, "SELECT * FROM sinebeng WHERE userid = '$_GET[driverid]'");
 $r = mysqli_fetch_array($detailDriver);
 ?>
 
@@ -58,7 +58,7 @@ $r = mysqli_fetch_array($detailDriver);
         <a class="mr-10 badge-gradien-biru-2" href="sorry.php">
             <i class="ri-qr-scan-line"></i>
         </a>
-        <a class="mr-10 abu-nav" href="nitip.php">
+        <a class="mr-10 abu-nav" href="sorry.php">
             <i class="ri-open-arm-line"></i>
         </a>
         <a class="mr-10 abu-nav" href="profil.php">

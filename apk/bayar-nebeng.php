@@ -1,10 +1,10 @@
 <?php
 include "server/header.php";
 
-$detailDriver = mysqli_query($koneksi,"SELECT * FROM sinebeng WHERE userid = '$_GET[driverid]'");
+$detailDriver = mysqli_query($koneksi, "SELECT * FROM sinebeng WHERE userid = '$_GET[driverid]'");
 $r = mysqli_fetch_array($detailDriver);
 
-$dataUser = mysqli_query($koneksi ,"SELECT * FROM user WHERE userid = '$_SESSION[userid]'");
+$dataUser = mysqli_query($koneksi, "SELECT * FROM user WHERE userid = '$_SESSION[userid]'");
 $ruser = mysqli_fetch_array($dataUser);
 ?>
 
@@ -81,7 +81,7 @@ $ruser = mysqli_fetch_array($dataUser);
         <a class="mr-10 badge-gradien-biru-2" href="sorry.php">
             <i class="ri-qr-scan-line"></i>
         </a>
-        <a class="mr-10 abu-nav" href="nitip.php">
+        <a class="mr-10 abu-nav" href="sorry.php">
             <i class="ri-open-arm-line"></i>
         </a>
         <a class="mr-10 abu-nav" href="profil.php">
@@ -92,39 +92,39 @@ $ruser = mysqli_fetch_array($dataUser);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js" integrity="sha256-/H4YS+7aYb9kJ5OKhFYPUjSJdrtV6AeyJOtTkw6X72o=" crossorigin="anonymous"></script>
 <script>
     var typePembayaran = "simoney";
-     if(typePembayaran == "simoney"){
-            var data = {
+    if (typePembayaran == "simoney") {
+        var data = {
             link: "server/bayar-nebeng-simoney.php",
-            driverid : <?= $_GET['driverid'] ?>,
-            userid : <?= $_SESSION['userid'] ?>,
-            jumlah : <?= $r['tarif'] ?>,
+            driverid: <?= $_GET['driverid'] ?>,
+            userid: <?= $_SESSION['userid'] ?>,
+            jumlah: <?= $r['tarif'] ?>,
             namac: "<?= $ruser['nama'] ?>",
         }
         document.getElementById("pinAction").href = "pin.php?link=" + JSON.stringify(data);
-        }
+    }
 
-    function paymentToggle(a,b){
+    function paymentToggle(a, b) {
         typePembayaran = a;
         document.getElementById(a).style.color = "#404664";
         document.getElementById(b).style.color = "#b0b0b0";
-        if(typePembayaran == "simoney"){
+        if (typePembayaran == "simoney") {
             var data = {
-            link: "server/bayar-nebeng-simoney.php",
-            driverid : <?= $_GET['driverid'] ?>,
-            userid : <?= $_SESSION['userid'] ?>,
-            jumlah : <?= $r['tarif'] ?>,
-            namac: "<?= $ruser['nama'] ?>",            
-        }
-        document.getElementById("pinAction").href = "pin.php?link=" + JSON.stringify(data);
-        }else{
-        var data = {
-        link: "server/bayar-nebeng-tunai.php",
-        driverid : <?= $_GET['driverid'] ?>,
-        userid : <?= $_SESSION['userid'] ?>,
-        jumlah : <?= $r['tarif'] ?>,
-        namac: "<?= $ruser['nama'] ?>",
-    }
-    document.getElementById("pinAction").href = "pin.php?link=" + JSON.stringify(data);
+                link: "server/bayar-nebeng-simoney.php",
+                driverid: <?= $_GET['driverid'] ?>,
+                userid: <?= $_SESSION['userid'] ?>,
+                jumlah: <?= $r['tarif'] ?>,
+                namac: "<?= $ruser['nama'] ?>",
+            }
+            document.getElementById("pinAction").href = "pin.php?link=" + JSON.stringify(data);
+        } else {
+            var data = {
+                link: "server/bayar-nebeng-tunai.php",
+                driverid: <?= $_GET['driverid'] ?>,
+                userid: <?= $_SESSION['userid'] ?>,
+                jumlah: <?= $r['tarif'] ?>,
+                namac: "<?= $ruser['nama'] ?>",
+            }
+            document.getElementById("pinAction").href = "pin.php?link=" + JSON.stringify(data);
         }
     }
 </script>
