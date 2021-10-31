@@ -26,18 +26,7 @@
         <div class="text-align-tengah mb-5">
             <span style="font-weight:600;" class="sub-text">Room Chat</span>
         </div>
-        <div class="chat-box bg-abu-muda">
-            <div class="chat incoming">
-                <div class="details">
-                    <p>Ditunggu di bengkel <span>14:00 PM</span></p>
-                </div>
-            </div>
-            <div class="chat outgoing">
-                <div class="details">
-                    <p>Iya nih lagi otw kantin <span>14:00 PM</span></p>
-                </div>
-            </div>
-        </div>
+        <div class="chat-box bg-abu-muda"></div>
         <form action="#" class="typing-area">
             <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $kode; ?>" hidden>
             <input type="text" name="message" class="input-field" placeholder="Ketikkan Pesan..." autocomplete="off">

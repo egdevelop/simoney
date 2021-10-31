@@ -1,7 +1,7 @@
 <?php
 $host = "127.0.0.1";
 $username = "root";
-$password = "#Dij4min4m4n";
+$password = "";
 $db = "simoney";
 date_default_timezone_set("Asia/Jakarta");
 $tanggal = date("Y-m-d");
