@@ -29,13 +29,13 @@ include "server/header.php";
         <a class="mr-10 abu-nav" href="dashboard.php">
             <i class="ri-dashboard-line"></i>
         </a>
-        <a class="mr-10 nav-act" href="nebeng.php">
+        <a class="mr-10 abu-nav" href="nebeng.php">
             <i class="ri-route-line"></i>
         </a>
         <a class="mr-10 badge-gradien-biru-2" href="sorry.php">
             <i class="ri-qr-scan-line"></i>
         </a>
-        <a class="mr-10 abu-nav" href="sorry.php">
+        <a class="mr-10 abu-nav" href="nitip.php">
             <i class="ri-open-arm-line"></i>
         </a>
         <a class="mr-10 abu-nav" href="profil.php">
@@ -71,8 +71,26 @@ if(type == 'sinebeng'){
                 }
 
             });
-        }else{
-            console.log(type);
+        }else if(type == "sinitip"){
+            $.ajax({
+                url: "server/cek-nitip.php",
+                type: "POST",
+                data: {
+                    userid: <?php echo $_SESSION['userid'] ?>,
+                },
+                success: function(response) {
+                    if(response == '1'){
+                        console.log(response);
+                        window.location.href = url2 + "&type=sinitip";
+                    }else{
+                        console.log(response);
+                    }
+                },
+                error: function() {
+                    alert("error");
+                }
+
+            });
         }
 },1000);
 

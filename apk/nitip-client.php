@@ -1,3 +1,8 @@
+
+<?php
+include "server/header.php";
+$dataKurir = mysqli_query($koneksi, "SELECT * FROM sinitip WHERE status = '1'");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,92 +36,29 @@
             </div>
         </div>
         <div class="konten-nebeng-client">
+            <?php
+                while($r = mysqli_fetch_array($dataKurir)){ 
+            ?>
             <div class="card-nenbeng-client">
                 <div class="flex align-items-tengah">
                     <div style="width:70%;" class="flex align-items-tengah justify-content-between">
                         <div class="text-waa">
-                            <span style="font-size: 4vw; font-weight:500;">Naufal</span>
+                            <span style="font-size: 4vw; font-weight:500;"><?= $r['nama'] ?></span>
                             <div style="font-size: 2.5vw;" class="flex align-items-tengah">
                                 <i class="ri-map-pin-line mr-2"></i>
-                                <p>KOPSIS BITa</p>
+                                <p><?= $r['lokasi'] ?></p>
                             </div>
                         </div>
-                        <p style="font-size: 3vw;">Rp. 12.000</p>
+                        <p style="font-size: 3vw;">Rp. <?= $r['upah'] ?></p>
                     </div>
-                    <div class="btn-pilih-in text-align-tengah ml-5">
-                        <a style="text-decoration:none; color:#fff;" href="detail-kurir.php"> Pesan</a>
-                    </div>
-
-                </div>
-            </div>
-            <div class="card-nenbeng-client">
-                <div class="flex align-items-tengah">
-                    <div style="width:70%;" class="flex align-items-tengah justify-content-between">
-                        <div class="text-waa">
-                            <span style="font-size: 4vw; font-weight:500;">Bryan</span>
-                            <div style="font-size: 2.5vw;" class="flex align-items-tengah">
-                                <i class="ri-map-pin-line mr-2"></i>
-                                <p>Kantin</p>
-                            </div>
-                        </div>
-                        <p style="font-size: 3vw;">Rp. 18.000</p>
-                    </div>
-                    <div class="btn-pilih-in text-align-tengah ml-5">
+                    <a style="text-decoration: none; color:#fff;" href="detail-kurir.php?kuririd=<?= $r['userid'] ?>" class="btn-pilih-in text-align-tengah ml-5">
                         Pesan
-                    </div>
+                    </a>
                 </div>
             </div>
-            <div class="card-nenbeng-client">
-                <div class="flex align-items-tengah">
-                    <div style="width:70%;" class="flex align-items-tengah justify-content-between">
-                        <div class="text-waa">
-                            <span style="font-size: 4vw; font-weight:500;">Zaman</span>
-                            <div style="font-size: 2.5vw;" class="flex align-items-tengah">
-                                <i class="ri-map-pin-line mr-2"></i>
-                                <p>Loker</p>
-                            </div>
-                        </div>
-                        <p style="font-size: 3vw;">Rp. 22.000</p>
-                    </div>
-                    <div class="btn-pilih-in text-align-tengah ml-5">
-                        Pesan
-                    </div>
-                </div>
-            </div>
-            <div class="card-nenbeng-client">
-                <div class="flex align-items-tengah">
-                    <div style="width:70%;" class="flex align-items-tengah justify-content-between">
-                        <div class="text-waa">
-                            <span style="font-size: 4vw; font-weight:500;">Asep</span>
-                            <div style="font-size: 2.5vw;" class="flex align-items-tengah">
-                                <i class="ri-map-pin-line mr-2"></i>
-                                <p>Kopsis BIT</p>
-                            </div>
-                        </div>
-                        <p style="font-size: 3vw;">Rp. 19.000</p>
-                    </div>
-                    <div class="btn-pilih-in text-align-tengah ml-5">
-                        Pesan
-                    </div>
-                </div>
-            </div>
-            <div class="card-nenbeng-client">
-                <div class="flex align-items-tengah">
-                    <div style="width:70%;" class="flex align-items-tengah justify-content-between">
-                        <div class="text-waa">
-                            <span style="font-size: 4vw; font-weight:500;">Pandu</span>
-                            <div style="font-size: 2.5vw;" class="flex align-items-tengah">
-                                <i class="ri-map-pin-line mr-2"></i>
-                                <p>SMKN 2 Tasikmalaya</p>
-                            </div>
-                        </div>
-                        <p style="font-size: 3vw;">Rp. 11.000</p>
-                    </div>
-                    <div class="btn-pilih-in text-align-tengah ml-5">
-                        Pesan
-                    </div>
-                </div>
-            </div>
+            <?php
+                }
+            ?>
         </div>
     </div>
     <div class="nav">

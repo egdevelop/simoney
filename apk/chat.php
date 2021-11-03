@@ -25,7 +25,7 @@ $kode = $_GET['kode'];
                         <i style="font-size: 5vw; font-weight:600;" class="ri-arrow-left-s-line"></i>
                     </div>
                 </a>
-                <span style="font-weight:700; font-size:5vw; color: rgba(0, 8, 48, 0.75);">SINITIP</span>
+                <span style="font-weight:700; font-size:5vw; color: rgba(0, 8, 48, 0.75);">SIMONEY</span>
             </div>
         </div>
         <br>
@@ -134,6 +134,9 @@ $kode = $_GET['kode'];
 
     if(type ==  'sinebeng'){
         document.getElementById("selesai").href = "server/selesai-nebeng.php";
+    }
+    if(type ==  'sinitip'){
+        document.getElementById("selesai").href = "server/selesai-nitip.php";
     }
 
 </script>

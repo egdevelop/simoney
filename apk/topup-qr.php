@@ -36,7 +36,8 @@
 var url_string = window.location.href;
 var url = new URL(url_string);
 var qr = url.searchParams.get("qr");
-new QRCode(document.getElementById("qrcode"), "https://simoney.hstki.org/server/topup.php?prosesid=" + qr);
+var qrjson = JSON.parse(qr);
+new QRCode(document.getElementById("qrcode"), "https://simoney.hstki.org/apk/server/topup.php?userid=" + qrjson.userid + "&jumlah=");
 function numberWithCommas(x) {
     var parts = x.toString().split(".");
     parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");

@@ -50,9 +50,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <form class="d-flex">
-                            <a style="text-decoration: none; color:inherit;" href="SIMONEY.apk" class="btn btn-light" type="submit">Download</a>
-                        </form>
+                        <a style="text-decoration: none; color:inherit;" href="SIMONEY.apk" class="btn btn-light res-button1" type="submit">Download</a>
                     </div>
                 </nav>
             </div>
@@ -63,6 +61,10 @@
                     <div class="col-md-7">
                         <h1 class="heading1-custom" style=" width: 100%;">Transfer kemana saja menjadi mudah bersama kami</h1>
                         <p class="desc1 putih">Atur pengeluaranmu bersama kami dan juga raih pendapatanmu bersama SINEBENG dan SINITIP</p>
+                        <a style="text-decoration: none; color:inherit;" href="SIMONEY.apk" class="btn btn-light res-button2" type="submit">Download</a>
+                        <i class="fab fa-facebook-f"></i>
+                        <i class="fab fa-instagram"></i>
+                        <i class="fab fa-twitter"></i>
                     </div>
                     <div class=" col-md-5">
                         <!-- <img class="img-fluid img-jumbotron" src="assets/img/ilustrasion1.png"> -->
@@ -161,7 +163,7 @@
                     </div>
                 </div>
                 <div class="card-testi-item">
-                    <p>“Terima kasih Developer...aplikasi SIMONEY ini memudahkan saya yang tidak punya kendaraan untuk dapat nebeng dengan aman dan harga yang relatif murah dengan fitur SINEBENG ini !”</p>
+                    <p>“Terima kasih Developer...aplikasi SIMONEY ini memudahkan saya yang tidak punya kendaraan !”</p>
                     <div class="flex">
                         <img class="img-profile" src="assets/img/client.png" alt="">
                         <div class="column-testi">

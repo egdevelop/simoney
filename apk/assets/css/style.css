@@ -26,6 +26,12 @@ body {
   padding: 2vw;
   margin-bottom: 5vw;
 }
+.set-overflow {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
 .btn-pilih-in {
   width: 23vw;
   position: absolute;
@@ -48,6 +54,9 @@ body {
 }
 .bg-abu-muda {
   background-color: #edf0f5;
+}
+.overflow-hidden {
+  overflow: hidden;
 }
 .bg-biru {
   background-color: #4375ef;
@@ -152,7 +161,7 @@ body {
   border-radius: 10px;
   border: solid 1px rgba(255, 255, 255, 0.55);
   background: none;
-  color: rgba(255, 255, 255, 0.55);
+  color: #fff;
   padding: 5vw;
   margin: 5vw;
 }
@@ -609,6 +618,7 @@ body {
   min-height: 100vw;
   max-height: 100vw;
   overflow-y: auto;
+  padding: 5vw;
   box-shadow: inset 0 32px 32px -32px rgb(0 0 0 / 5%),
     inset 0 -32px 32px -32px rgb(0 0 0 / 5%);
   border-radius: 10px;

@@ -26,10 +26,11 @@
         </div>
         <div style="margin-top: 15vw;">
             <p style="font-weight: 500;  font-size:4.5vw; color: #b0b0b0;" class="mb-3">List Makanan</p>
+            <form action="server/detail-pesanan.php" method="POST">
           <div id="pesanan">
             <div class="flex form-nitip-client" style="margin-bottom: 1vw;">
-            <input class="form-nitip-1" type="text" name="pesanan0" placeholder="Cth : Mendoan X1">
-            <input class="form-nitip-2" type="text" name="harga0" placeholder="Harga..">
+            <input id="pesanan0" class="form-nitip-1" type="text" name="pesanan0" placeholder="Cth : Mendoan X1">
+            <input id="harga0" class="form-nitip-2" type="text" name="harga0" placeholder="Harga..">
           </div>
           </div>
             <div class="text-align-tengah">
@@ -38,10 +39,11 @@
                 </div>
             </div>
             <p style="font-weight: 500;  font-size:4.5vw; color: #b0b0b0;" class="mb-3">Catatan</p>
-            <textarea class="textarea-nitip" placeholder="Kirim ke mana ya...."></textarea>
-            <div class="text-align-tengah">
-                <a class="biru" href="bayar-nitip.php" style="font-weight: 600; text-decoration: none;">Lanjut&emsp;></a>
-            </div>
+            <textarea name="catatan" class="textarea-nitip" placeholder="Kirim ke mana ya...."></textarea>
+            <input type="hidden" name="kuririd" value="<?= $_GET['kuririd'] ?>">
+            <input style="border: none;" type="submit" class="button-biru-2 btn-nebeng text-align-tengah mt-10 mb-5" value="Lanjutkan">
+
+            </form>
         </div>
     </div>
     </div>
@@ -85,10 +87,12 @@
     formNitipClient.appendChild(formNitip2);
 
     function addPesanan(){
+        if(i <= 10){
         formNitip1.name="pesanan"+i;
         formNitip2.name="harga"+i;
         container.innerHTML += formNitipClient.outerHTML;
         i++
+        }
     }
 </script>
 

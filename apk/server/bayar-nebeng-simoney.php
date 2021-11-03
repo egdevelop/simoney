@@ -13,7 +13,9 @@ if($potong){
 $simpan = mysqli_query($koneksi,"INSERT INTO pending (toid,fromid,jumlah,ket)VALUES('$driverid','$userid','$jumlah','sinebeng')");
 
 if($simpan){
-    echo "waiting.php?href=chat.php?kode=$driverid";
+    $data['href'] = "waiting.php?href=chat.php?kode=$driverid";
+    $data['type'] = "sinebeng";
+    echo json_encode($data);
 }else{
     echo "g0";
 }

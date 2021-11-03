@@ -15,6 +15,6 @@ if($cek == 1){
     $_SESSION['userid'] = $r['userid'];
     header("location:../dashboard.php");
 }else{
-    var_dump($cek);
+    header("location:../login.php");
 }
 ?>

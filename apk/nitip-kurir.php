@@ -1,3 +1,10 @@
+<?php
+include "server/header.php";
+
+$listClient = mysqli_query($koneksi, "SELECT * FROM nitip_client WHERE kuririd='$_SESSION[userid]'");
+$jumlah = mysqli_num_rows($listClient);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,9 +22,9 @@
         <div class="card-mobile mb-5">
             <div class="text-align-tengah mb-5">
                 <div class="flex">
-                    <div style="margin-right: 26vw;" class="badge-biru">
+                    <a href="server/offkurir.php" style="text-decoration:none; color:#fff; margin-right: 26vw;" class="badge-biru">
                         <i style="font-size: 4vw; font-weight:600; padding:1vw 1vw;" class="ri-shut-down-line"></i>
-                    </div>
+                    </a>
                     <span style="font-weight:700; font-size:5vw;">SINITIP</span>
                 </div>
                 <br>
@@ -28,17 +35,22 @@
             <div class="flex justify-content-between mb-5">
                 <div class="flex align-items-tengah biru">
                     <i class="ri-group-fill mr-3"></i>
-                    <p>8 Orang</p>
+                    <p><?= $jumlah ?> Orang</p>
                 </div>
                 <i class="ri-filter-3-line biru"></i>
             </div>
+            <?php
+                while($r = mysqli_fetch_array($listClient)){
+
+                
+            ?>
             <div class="card-nebeng align-items-tengah">
                 <img src="assets/img/client.png" alt="client">
-                <p style="font-weight: 600;">Diah</p>
+                <p style="font-weight: 600;"><?= $r['nama'] ?></p>
                 <p style="font-size:3vw; color: #9e9e9e;">1 Menit yang lalu</p>
                 <div style="margin-left:2vw; margin-right:2vw; margin-top:3vw;" class="flex justify-content-between">
                     <div class="nebeng-btn-biru">
-                        <a href="detail-pesanan-kurir.php" style="text-decoration: none; color:#fff;">
+                        <a href="detail-pesanan-kurir.php?clientid=<?= $r['clientid'] ?>" style="text-decoration: none; color:#fff;">
                         <i class="ri-check-line"></i>
                         </a>
                     </div>
@@ -47,45 +59,9 @@
                     </div>
                 </div>
             </div>
-            <div class="card-nebeng align-items-tengah">
-                <img src="assets/img/client.png" alt="client">
-                <p style="font-weight: 600;">Eve</p>
-                <p style="font-size:3vw; color: #9e9e9e;">1 Menit yang lalu</p>
-                <div style="margin-left:2vw; margin-right:2vw; margin-top:3vw;" class="flex justify-content-between">
-                    <div class="nebeng-btn-biru">
-                        <i class="ri-check-line"></i>
-                    </div>
-                    <div class="nebeng-btn-putih">
-                        <i class="ri-close-line"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="card-nebeng align-items-tengah">
-                <img src="assets/img/client.png" alt="client">
-                <p style="font-weight: 600;">Dogba</p>
-                <p style="font-size:3vw; color: #9e9e9e;">1 Menit yang lalu</p>
-                <div style="margin-left:2vw; margin-right:2vw; margin-top:3vw;" class="flex justify-content-between">
-                    <div class="nebeng-btn-biru">
-                        <i class="ri-check-line"></i>
-                    </div>
-                    <div class="nebeng-btn-putih">
-                        <i class="ri-close-line"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="card-nebeng align-items-tengah">
-                <img src="assets/img/client.png" alt="client">
-                <p style="font-weight: 600;">Lord</p>
-                <p style="font-size:3vw; color: #9e9e9e;">1 Menit yang lalu</p>
-                <div style="margin-left:2vw; margin-right:2vw; margin-top:3vw;" class="flex justify-content-between">
-                    <div class="nebeng-btn-biru">
-                        <i class="ri-check-line"></i>
-                    </div>
-                    <div class="nebeng-btn-putih">
-                        <i class="ri-close-line"></i>
-                    </div>
-                </div>
-            </div>
+            <?php
+                }
+            ?>
             <a style="text-decoration: none;" href="nitip-cuan.php">
                 <div style="height: 13vw; width:92%; margin-left:3vw; margin-top:110vw;" class="button-biru-2 btn-nebeng text-align-tengah mt-10 mb-5">
                     Atur profil anda

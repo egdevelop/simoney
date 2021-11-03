@@ -1,3 +1,9 @@
+<?php
+include "server/header.php";
+$dataKurir = mysqli_query($koneksi,"SELECT * FROM sinitip WHERE userid = '$_GET[kuririd]'");
+$r = mysqli_fetch_array($dataKurir);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,15 +32,15 @@
         </div>
         <div style="margin-top: 15vw;">
             <p style="font-weight: 500;  font-size:4.5vw; color: #b0b0b0;" class="mb-3">Nama</p>
-            <p style="font-weight: 500; font-size:4vw;" class="mb-10">Bryan</p>
+            <p style="font-weight: 500; font-size:4vw;" class="mb-10"><?= $r['nama'] ?></p>
             <p style="font-weight: 500;  font-size:4.5vw; color: #b0b0b0;" class="mb-3">Lokasi saat ini</p>
-            <p style="font-weight: 500; font-size:4vw;" class="mb-10">SMKN 2 Tasikamalaya</p>
+            <p style="font-weight: 500; font-size:4vw;" class="mb-10"><?= $r['lokasi'] ?></p>
             <div class="flex justify-content-between mb-5">
                 <p style="font-weight: 500;  font-size:4.5vw; color: #b0b0b0;" class="mb-3">Upah</p>
-                <p style="font-weight: 500; font-size:4vw;" class="mb-5">Rp.18.000</p>
+                <p style="font-weight: 500; font-size:4vw;" class="mb-5">Rp.<?= $r['upah'] ?></p>
             </div>
             <div class="text-align-tengah">
-                <a class="biru" href="detail-pesanan.php" style="font-weight: 600; text-decoration: none;">Lanjut&emsp;></a>
+                <a class="biru" href="detail-pesanan.php?kuririd=<?= $_GET['kuririd'] ?>" style="font-weight: 600; text-decoration: none;">Lanjut&emsp;></a>
             </div>
         </div>
     </div>

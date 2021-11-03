@@ -1,3 +1,32 @@
+<?php
+include "server/header.php";
+
+$status = mysqli_query($koneksi, "SELECT status FROM sinitip WHERE userid='$_SESSION[userid]'");
+$status1 = mysqli_query($koneksi, "SELECT nitip_status FROM user WHERE userid='$_SESSION[userid]'");
+$data = mysqli_query($koneksi, "SELECT driverid,clientid FROM nitip_client WHERE clientid='$_SESSION[userid]' OR driverid='$_SESSION[userid]'");
+$s = mysqli_fetch_array($status);
+$s1 = mysqli_fetch_array($status1);
+$r = mysqli_fetch_array($data);
+if ($s != null) {
+    if ($s['status'] == '1') {
+        header("location:nitip-kurir.php");
+    }
+    if ($s['status'] == '2') {
+        $kode = $r['clientid'];
+        header("location:chat.php?kode=$kode&type=sinitip");
+    }
+}
+
+if ($status1 != null) {
+    if ($s1['nitip_status'] == '1') {
+        $kode = $r['driverid'];
+        header("location:chat.php?kode=$kode&type=sinitip");
+    }
+}else{
+    var_dump($status1);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 

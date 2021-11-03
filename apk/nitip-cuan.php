@@ -1,3 +1,19 @@
+<?php
+include "server/header.php";
+
+$exist = mysqli_query($koneksi, "SELECT * FROM sinitip WHERE userid='$_SESSION[userid]'");
+$count = mysqli_num_rows($exist);
+
+if ($count == 1) {
+    $setOn = mysqli_query($koneksi, "UPDATE sinitip SET status = '1' WHERE userid='$_SESSION[userid]'");
+    if ($setOn) {
+        header("location:nitip-kurir.php");
+    } else {
+        header("location:nitip-cuan.php");
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,17 +39,18 @@
                 <img src="assets/img/nebeng-corak-1.png" alt="corak">
             </div>
             <br>
-            <form action="POST">
+            <form method="POST" action="server/nitip-cuan.php">
                 <div class="mt-5">
                     <span style="font-weight:600; color: rgba(0, 8, 48, 0.47);" class="sub-text mb-5">Set Upah</span>
                 </div>
-                <input type="text" name="tarif" class="input-nebeng" placeholder="Bensin cukup hidup aman...">
+                <input type="text" name="upah" class="input-nebeng" placeholder="Bensin cukup hidup aman...">
                 <div class="mt-5">
                     <span style="font-weight:600; color: rgba(0, 8, 48, 0.47);" class="sub-text mb-5">Set Lokasi</span>
                 </div>
-                <input type="text" name="tarif" class="input-nebeng" placeholder="Kamu dimana nih...">
+                <input type="text" name="lokasi" class="input-nebeng" placeholder="Kamu dimana nih...">
+                <input style="border: none;" type="submit" class="button-biru-2 btn-nebeng text-align-tengah mt-10 mb-5" value="Lanjutkan">
             </form>
-            <div style="  position: absolute; margin-top: -33vw; margin-left: 2vw;">
+            <div style="  position: absolute; margin-top: -61vw; margin-left: 2vw;">
                 <div style="width: 8vw;" class="badge-biru mr-3 mb-13">
                     Rp
                 </div>
@@ -41,11 +58,6 @@
                     <i style="font-size: 4vw;" class="ri-map-pin-line"></i>
                 </div>
             </div>
-            <a style="text-decoration: none;" href="nitip-kurir.php">
-                <div class="button-biru-2 btn-nebeng text-align-tengah mt-10 mb-5">
-                    Lanjutkan
-                </div>
-            </a>
         </div>
     </div>
     <div class="nav">

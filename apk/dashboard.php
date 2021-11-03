@@ -4,7 +4,7 @@ include "server/header.php";
 $dataUser = mysqli_query($koneksi, "SELECT * FROM user WHERE userid = '$_SESSION[userid]'");
 $ruser = mysqli_fetch_array($dataUser);
 
-$dataHistory = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE userid = '$_SESSION[userid]'");
+$dataHistory = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE userid = '$_SESSION[userid]' ORDER BY id DESC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -70,9 +70,21 @@ $dataHistory = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE userid = '$
                     if ($d['type'] == 0) {
                         $icon = "up";
                         $des = "Uang Keluar dari Transfer";
-                    } else {
+                    } elseif ($d['type'] == 1) {
                         $icon = "down";
                         $des = "Uang Masuk dari Transfer";
+                    } elseif ($d['type'] == 2){
+                        $icon = "up";
+                        $des = "Uang Keluar dari SINEBENG";
+                    } elseif ($d['type'] == 3){
+                        $icon = "down";
+                        $des = "Uang Masuk dari SINEBENG";
+                    }elseif ($d['type'] == 4){
+                        $icon = "up";
+                        $des = "Uang Keluar dari SINITIP";
+                    } elseif ($d['type'] == 5){
+                        $icon = "down";
+                        $des = "Uang Masuk dari SINITIP";
                     }
                 ?>
                     <tr>
@@ -107,7 +119,7 @@ $dataHistory = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE userid = '$
         <a class="mr-10 badge-gradien-biru-2" href="sorry.php">
             <i class="ri-qr-scan-line"></i>
         </a>
-        <a class="mr-10 abu-nav" href="sorry.php">
+        <a class="mr-10 abu-nav" href="nitip.php">
             <i class="ri-open-arm-line"></i>
         </a>
         <a class="mr-10 abu-nav" href="profil.php">

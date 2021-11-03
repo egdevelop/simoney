@@ -1,3 +1,10 @@
+<?php
+include "server/header.php";
+
+$dataPesanan = mysqli_query($koneksi,"SELECT * FROM nitip_client WHERE clientid = '$_GET[clientid]' AND kuririd = '$_SESSION[userid]'");
+$r = mysqli_fetch_array($dataPesanan);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,24 +33,13 @@
         </div>
         <div style="margin-top: 15vw;">
             <p style="font-weight: 500;  font-size:4.5vw; color: #b0b0b0;" class="mb-3">Nama</p>
-            <p style="font-weight: 500; font-size:4vw;" class="mb-10">Diah</p>
+            <p style="font-weight: 500; font-size:4vw;" class="mb-10"><?= $r['nama'] ?></p>
             <p style="font-weight: 500;  font-size:4.5vw; color: #b0b0b0;" class="mb-3">Pesanan</p>
-            <div class="flex mb-3 justify-content-between">
-                <p style="font-weight: 500; font-size:4vw;" class="mb-3">Gehu</p>
-                <p style="font-weight: 500; font-size:4vw;" class="mb-3">6 Buah</p>
-            </div>
-            <div class="flex mb-3 justify-content-between">
-                <p style="font-weight: 500; font-size:4vw;" class="mb-3">Roti</p>
-                <p style="font-weight: 500; font-size:4vw;" class="mb-3">1 Buah</p>
-            </div>
-            <div class="flex mb-3 justify-content-between">
-                <p style="font-weight: 500; font-size:4vw;" class="mb-3">Nasi TO</p>
-                <p style="font-weight: 500; font-size:4vw;" class="mb-3">1 Buah</p>
-            </div>
+            <div id="list-makanan"></div>
             <p style="font-weight: 500;  font-size:4.5vw; color: #b0b0b0;" class="mb-3">Catatan</p>
-            <p style="font-weight: 500; font-size:4vw;" class="mb-10">Anterin ke ruangan 34 yah dibawah bengkel TKJ</p>
+            <p style="font-weight: 500; font-size:4vw;" class="mb-10"><?= $r['catatan'] ?></p>
             <div class="text-align-tengah">
-                <a class="biru" href="waiting.php" style="font-weight: 600; text-decoration: none;">Lanjut&emsp;></a>
+                <a class="biru" href="server/nitip-kurir.php?clientid=<?= $_GET['clientid'] ?>" style="font-weight: 600; text-decoration: none;">Lanjut&emsp;></a>
             </div>
         </div>
     </div>
@@ -66,5 +62,39 @@
         </a>
     </div>
 </body>
+<script>
+        function numberWithCommas(x) {
+        var parts = x.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return parts.join(".");
+    }
+
+     var raw = JSON.stringify(<?= $r['pesanan'] ?>);
+    var pesanan = JSON.parse(raw);
+    var totalHarga = 0;
+
+    var listContainer = document.createElement("div");
+    listContainer.className = "flex justify-content-between mb-5 align-items-tengah";
+
+    var listSpan = document.createElement("span");
+    listSpan.className = "ml-3";
+    listSpan.style = "font-size:4vw;";
+
+    var listP = document.createElement("p");
+    listP.style = "font-size:4vw;";
+
+    for(var i = 0; i < Object.keys(pesanan).length;i++){
+        totalHarga += Number(pesanan['pesanan'+i]['harga']);
+        listSpan.id = "makanan-nama"+i;
+        listP.id = "makanan-harga"+i;
+        listContainer.appendChild(listSpan);
+        listContainer.appendChild(listP);
+        document.getElementById("list-makanan").innerHTML += listContainer.outerHTML;
+    }
+    for(var i = 0; i < Object.keys(pesanan).length;i++){
+        document.getElementById("makanan-nama"+i).innerHTML= pesanan['pesanan'+i]['nama'];
+        document.getElementById("makanan-harga"+i).innerHTML= "Rp" + numberWithCommas(pesanan['pesanan'+i]['harga']);
+    }
+</script>
 
 </html>

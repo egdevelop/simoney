@@ -31,7 +31,7 @@
         <a class="mr-10 badge-gradien-biru-2" href="sorry.php">
             <i class="ri-qr-scan-line"></i>
         </a>
-        <a class="mr-10 abu-nav" href="sorry.php">
+        <a class="mr-10 abu-nav" href="nitip.php">
             <i class="ri-open-arm-line"></i>
         </a>
         <a class="mr-10 abu-nav" href="profil.php">
@@ -41,6 +41,7 @@
 </body>
 <script>
     var url = "<?php echo $_GET['href']; ?>" // membuat url tujuan
+    var type = "<?php echo $_GET['type']; ?>" // membuat url tujuan
     var count = 3; // membuat hitungan kedalam detik
     function countDown() {
         if (count > 0) {
@@ -48,7 +49,7 @@
             var waktu = count + 1;
             setTimeout("countDown()", 1000);
         } else {
-            window.location.href = url+ "&type=sinebeng";
+            window.location.href = url+ "&type="+type;
         }
     }
     countDown();

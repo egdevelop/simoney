@@ -1,3 +1,14 @@
+<?php
+include "server/header.php";
+$dataPesanan = mysqli_query($koneksi,"SELECT * FROM nitip_client WHERE clientid = '$_SESSION[userid]' ORDER BY id DESC");
+$r = mysqli_fetch_array($dataPesanan);
+$dataKurir = mysqli_query($koneksi,"SELECT * FROM sinitip WHERE userid='$r[kuririd]'");
+$d = mysqli_fetch_array($dataKurir);
+
+$dataUser = mysqli_query($koneksi, "SELECT * FROM user WHERE userid = '$_SESSION[userid]'");
+$ruser = mysqli_fetch_array($dataUser);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -29,12 +40,13 @@
                 <i class="ri-wallet-line"></i>
                 <span class="ml-3">SIMONEY</span>
             </div>
-            <p style="font-weight: 600;">Rp.700.000</p>
+            <p style="font-weight: 600;" id="saldo"></p>
         </div>
-        <div id="tunai" onclick="paymentToggle('tunai','simoney')" style="font-weight: 600; color: #b0b0b0;" class="flex mt-3 mb-5 align-items-tengah">
+        <br>
+        <!-- <div id="tunai" onclick="paymentToggle('tunai','simoney')" style="font-weight: 600; color: #b0b0b0;" class="flex mt-3 mb-5 align-items-tengah">
             <i class="ri-copper-coin-line"></i>
             <span class="ml-3">Tunai</span>
-        </div>
+        </div> -->
         <span style="font-weight: 500;" class="mb-3">Nominal</span>
         <div class="flex align-items-tengah mb-10 mt-3">
             <div class="badge-biru mr-3">
@@ -44,34 +56,25 @@
         </div>
         <div class="flex justify-content-between mb-5 align-items-tengah">
             <span style="color: #b0b0b0;" class="ml-3">Makanan</span>
-            <p style="font-weight: 600;">Rp.15.000</p>
+            <p style="font-weight: 600;" id="total-harga"></p>
         </div>
-        <div class="flex justify-content-between mb-5 align-items-tengah">
-            <span style="font-size:4vw;" class="ml-3">Gehu x6</span>
-            <p style="font-size:4vw;">Rp.6.000</p>
-        </div>
-        <div class="flex justify-content-between mb-5 align-items-tengah">
-            <span style="font-size:4vw;" class="ml-3">Roti x2</span>
-            <p style="font-size:4vw;">Rp.4.000</p>
-        </div>
-        <div class="flex justify-content-between mb-5 align-items-tengah">
-            <span style="font-size:4vw;" class="ml-3">Ayam Geprek x1</span>
-            <p style="font-size:4vw;">Rp.5.000</p>
+        <div id="list-makanan">
+
         </div>
 
         <div class="flex justify-content-between mb-5 align-items-tengah">
             <span style="color: #b0b0b0;" class="ml-3">Upah</span>
-            <p style="font-weight: 600;">Rp.10.000</p>
+            <p style="font-weight: 600;" id="upah"></p>
         </div>
         <div class="flex justify-content-between mb-5 align-items-tengah">
             <span style="color: #b0b0b0;" class="ml-3">Pajak</span>
-            <p style="font-weight: 600;">Rp.500</p>
+            <p style="font-weight: 600;">Gratis</p>
         </div>
         <div class="flex justify-content-between mb-5 align-items-tengah">
             <span style="color: #b0b0b0;" class="ml-3">Jumlah</span>
-            <p style="font-weight: 600;">Rp.18.500</p>
+            <p style="font-weight: 600;" id="jumlah"></p>
         </div>
-        <a style="text-decoration: none;" href="pin.php">
+        <a style="text-decoration: none;" id="pinAction">
             <div style="height: 13vw; width:92%; margin-left:3vw; margin-top:10vw;" class="button-biru-2 btn-nebeng text-align-tengah mt-10 mb-5">
                 Bayar Sekarang
             </div>
@@ -98,6 +101,57 @@
     </div>
 </body>
 <script>
+    function numberWithCommas(x) {
+        var parts = x.toString().split(".");
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+        return parts.join(".");
+    }
+
+    var raw = JSON.stringify(<?= $r['pesanan'] ?>);
+    var pesanan = JSON.parse(raw);
+    var totalHarga = 0;
+
+    var listContainer = document.createElement("div");
+    listContainer.className = "flex justify-content-between mb-5 align-items-tengah";
+
+    var listSpan = document.createElement("span");
+    listSpan.className = "ml-3";
+    listSpan.style = "font-size:4vw;";
+
+    var listP = document.createElement("p");
+    listP.style = "font-size:4vw;";
+
+    for(var i = 0; i < Object.keys(pesanan).length;i++){
+        totalHarga += Number(pesanan['pesanan'+i]['harga']);
+        listSpan.id = "makanan-nama"+i;
+        listP.id = "makanan-harga"+i;
+        listContainer.appendChild(listSpan);
+        listContainer.appendChild(listP);
+        document.getElementById("list-makanan").innerHTML += listContainer.outerHTML;
+    }
+    for(var i = 0; i < Object.keys(pesanan).length;i++){
+        document.getElementById("makanan-nama"+i).innerHTML= pesanan['pesanan'+i]['nama'];
+        document.getElementById("makanan-harga"+i).innerHTML= "Rp" + numberWithCommas(pesanan['pesanan'+i]['harga']);
+    }
+    document.getElementById('total-harga').innerHTML = "Rp."+numberWithCommas(totalHarga);
+    document.getElementById('upah').innerHTML = "Rp."+numberWithCommas(<?= $d['upah'] ?>);
+    document.getElementById('jumlah').innerHTML = "Rp."+numberWithCommas(totalHarga + <?= $d['upah'] ?>);
+    document.getElementById('saldo').innerHTML = "Rp."+numberWithCommas(<?= $ruser['saldo'] ?>);
+
+    
+        var typePembayaran = "simoney";
+    if (typePembayaran == "simoney") {
+        var data = {
+            link: "server/bayar-nitip-simoney.php",
+            kuririd: <?= $r['kuririd'] ?>,
+            userid: <?= $_SESSION['userid'] ?>,
+            jumlah: totalHarga + <?= $d['upah'] ?>,
+            id_pesanan: "<?= $r['id'] ?>",
+        }
+        document.getElementById("pinAction").href = "pin.php?link=" + JSON.stringify(data);
+    }
+
+    console.log(totalHarga);
     function paymentToggle(a,b){
         document.getElementById(a).style.color = "#404664";
         document.getElementById(b).style.color = "#b0b0b0";

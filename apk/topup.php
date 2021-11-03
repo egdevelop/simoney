@@ -118,8 +118,7 @@ function keypad (a){
             jumlah : finalString,
             userid : <?php echo $_SESSION['userid'] ?>
         }
-        var encrypted = CryptoJS.AES.encrypt(JSON.stringify(message), "Secret Passphrase");
-        document.getElementById("link-qr").href = "topup-qr.php?qr=" + encrypted + "&n=" + finalString;
+        document.getElementById("link-qr").href = "topup-qr.php?qr=" + JSON.stringify(message) + "&n=" + finalString;
         document.getElementById("value-money").innerHTML = "Rp"+numberWithCommas(finalString);
     }else{
         document.getElementById("value-money").innerHTML = "Rp0";
