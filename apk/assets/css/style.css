@@ -6,11 +6,45 @@
   padding: 0;
 }
 
+@keyframes notif-a {
+  from {
+    transform: translateY(0vw);
+  }
+  to {
+    transform: translateY(-20vw);
+  }
+}
+
 body {
   font-family: "Poppins", sans-serif;
 }
 .bg-abu {
   background: #eaecf3;
+}
+a,
+a:hover,
+a:focus,
+a:active {
+  text-decoration: none;
+  color: inherit;
+  background-color: none;
+}
+.bg-red {
+  background-color: #ff0000;
+}
+.notif {
+  width: 90vw;
+  position: fixed;
+  top: 7vw;
+  text-align: center;
+  padding: 3vw;
+  border-radius: 15px;
+  color: #fff;
+  margin-left: 5vw;
+  display: none;
+}
+.act-n {
+  display: block;
 }
 .bagde-tf {
   width: 100%;
@@ -739,4 +773,8 @@ body {
 .typing-area button.active {
   opacity: 1;
   pointer-events: auto;
+}
+.search {
+  border: none;
+  font-size: 4vw;
 }

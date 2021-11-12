@@ -1,0 +1,28 @@
+<input type="text" id="nama" />
+<button onclick="getData()">Submit</button>
+<div id="data"></div>
+<div id="images" style="display: flex"></div>
+
+<script>
+  function getData() {
+    document.getElementById("data").innerHTML = "";
+    document.getElementById("images").innerHTML = "";
+    var keyword = document.getElementById("nama").value;
+    // console.log('http://localhost:28104/api/v1/gtrend/'+keyword);
+
+    fetch("http://garuda.hstki.org:28104/api/v1/gtrend/" + keyword)
+      .then((response) => response.json())
+      .then((data) => {
+        for (
+          var i = 0;
+          i <= data.default.rankedList[0].rankedKeyword.length;
+          i++
+        ) {
+          document.getElementById("data").innerHTML +=
+            "<li>" +
+            data.default.rankedList[0].rankedKeyword[i].query +
+            "</li>";
+        }
+      });
+  }
+</script>

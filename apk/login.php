@@ -39,10 +39,23 @@ if(isset($_SESSION['userid'])){
     <button type="submit" class="button-putih-2 bg-putih btn-nebeng text-align-tengah mt-5 mb-5">Login</button>
     </div>
 </form>
-
+<div class="notif bg-red" id="notif">
+        <p></p>
+    </div>
 </body>
 <script>
+<?php
+        if(isset($_GET['pesan'])){
+    ?>
+    document.getElementById("notif").innerHTML = '<i class="ri-notification-line"></i>&ensp;<?= $_GET['pesan'] ?>';
+    document.getElementById("notif").classList.add("act-n");
+    setTimeout(()=>{
+        document.getElementById("notif").style = "animation-name: notif-a; animation-duration: 1s; transform: translateY(-20vw);"
+    },1000);
 
+    <?php
+    }
+    ?>
 </script>
 
 </html>

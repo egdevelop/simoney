@@ -17,10 +17,10 @@ if($r['status'] == 1){
     $hapusChat = mysqli_query($koneksi,"DELETE FROM chat WHERE user1= '$_SESSION[userid]' OR user2='$_SESSION[userid]'");
     $trx1 = mysqli_query($koneksi,"INSERT INTO transaksi (userid,type,jumlah)VALUES('$d[fromid]','2','$d[jumlah]')");
     $trx1 = mysqli_query($koneksi,"INSERT INTO transaksi (userid,type,jumlah)VALUES('$d[toid]','3','$d[jumlah]')");
-    header("location:../dashboard.php");
+    header("location:../dashboard.php?pesan=Orderan%20Selesai");
 }else{
     $update = mysqli_query($koneksi,"UPDATE nebeng_client SET status ='1' WHERE clientid = '$_SESSION[userid]' OR driverid='$_SESSION[userid]' ");
     $update1 = mysqli_query($koneksi,"UPDATE user SET nebeng_status = '0' WHERE userid='$_SESSION[userid]'");
     $update2 = mysqli_query($koneksi,"UPDATE sinebeng SET status = '0' WHERE userid='$_SESSION[userid]'");
-    header("location:../dashboard.php");
+    header("location:../dashboard.php?pesan=Orderan%20Selesai");
 }

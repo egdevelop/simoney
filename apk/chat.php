@@ -32,7 +32,11 @@ $kode = $_GET['kode'];
         <div class="text-align-tengah mb-5">
             <span style="font-weight:600;" class="sub-text">Room Chat</span>
         </div>
+        
         <div class="chat-box bg-abu-muda"></div>
+        <div id="bottom-arrow" onclick="scrollToBottom()" style="display:none; right:10vw; top:55vh; position:fixed; " class="badge-biru">
+    <i style="font-size: 5vw; font-weight:600;" class="ri-arrow-down-s-line"></i>
+        </div>
         <form action="#" class="typing-area">
             <input type="text" class="you_id" name="you_id" value="<?php echo $kode; ?>" hidden>
             <input type="text" name="message" class="input-field" placeholder="Ketikkan Pesan..." autocomplete="off">
@@ -44,26 +48,41 @@ $kode = $_GET['kode'];
             </div>
         </a>
     </div>
-        <div class="nav">
-            <a class="mr-10 abu-nav" href="dashboard.php">
-                <i class="ri-dashboard-line"></i>
-            </a>
-            <a class="mr-10 abu-nav" href="nebeng.php">
-                <i class="ri-route-line"></i>
-            </a>
-            <a class="mr-10 badge-gradien-biru-2" href="#">
-                <i class="ri-qr-scan-line"></i>
-            </a>
-            <a class="mr-10 abu-nav" href="nitip.php">
-                <i class="ri-open-arm-line"></i>
-            </a>
-            <a class="mr-10 abu-nav" href="profil.php">
-                <i class="ri-user-line"></i>
-            </a>
-        </div>
+    <div class="nav" id="nav">
+        <a class="mr-10 abu-nav" href="dashboard.php">
+            <i class="ri-dashboard-line"></i>
+        </a>
+        <a class="mr-10 abu-nav" href="nebeng.php">
+            <i class="ri-route-line"></i>
+        </a>
+        <a class="mr-10 badge-gradien-biru-2" href="#">
+            <i class="ri-qr-scan-line"></i>
+        </a>
+        <a class="mr-10 abu-nav" href="nitip.php">
+            <i class="ri-open-arm-line"></i>
+        </a>
+        <a class="mr-10 abu-nav" href="profil.php">
+            <i class="ri-user-line"></i>
+        </a>
+    </div>
+    </div>
+    <div class="notif bg-biru" id="notif">
+        <p></p>
     </div>
 </body>
 <script>
+        <?php
+        if(isset($_GET['pesan'])){
+    ?>
+    document.getElementById("notif").innerHTML = '<i class="ri-notification-line"></i>&ensp;<?= $_GET['pesan'] ?>';
+    document.getElementById("notif").classList.add("act-n");
+    setTimeout(()=>{
+        document.getElementById("notif").style = "animation-name: notif-a; animation-duration: 1s; transform: translateY(-20vw);"
+    },1000);
+
+    <?php
+    }
+    ?>
     const form = document.querySelector(".typing-area"),
         you_id = form.querySelector(".you_id").value,
         inputField = form.querySelector(".input-field"),
@@ -105,6 +124,7 @@ $kode = $_GET['kode'];
         chatBox.classList.remove("active");
     }
 
+
     setInterval(() => {
         let xhr = new XMLHttpRequest();
         xhr.open("POST", "server/get-chat.php", true);
@@ -112,10 +132,20 @@ $kode = $_GET['kode'];
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 if (xhr.status === 200) {
                     let data = xhr.response;
-                    chatBox.innerHTML = data;
-                    if (!chatBox.classList.contains("active")) {
-                        scrollToBottom();
-                    }
+                    var a = chatBox.scrollTop;
+                        var b = chatBox.scrollHeight - chatBox.clientHeight;
+                        var c = a / b;
+                        if(a === b){
+                            chatBox.innerHTML = data;
+                            if (!chatBox.classList.contains("active")) {
+                                scrollToBottom();
+                                document.getElementById("bottom-arrow").style.display ="none";
+                            }
+                        }else{
+                            chatBox.innerHTML = data;
+                            document.getElementById("bottom-arrow").style.display ="block";
+                        }
+                   
                 }
             }
         }
@@ -132,13 +162,12 @@ $kode = $_GET['kode'];
     var url = new URL(url_string);
     var type = url.searchParams.get("type");
 
-    if(type ==  'sinebeng'){
+    if (type == 'sinebeng') {
         document.getElementById("selesai").href = "server/selesai-nebeng.php";
     }
-    if(type ==  'sinitip'){
+    if (type == 'sinitip') {
         document.getElementById("selesai").href = "server/selesai-nitip.php";
     }
-
 </script>
 
 </html>

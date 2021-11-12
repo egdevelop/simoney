@@ -12,6 +12,11 @@ body {
 .bg-abu {
   background: #eaecf3;
 }
+a, a:hover, a:focus, a:active {
+  text-decoration: none;
+  color: inherit;
+  background-color: #01646b;
+}
 .bagde-tf {
   width: 100%;
   background: rgba(41, 114, 255, 0.24);

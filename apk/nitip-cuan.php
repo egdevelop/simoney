@@ -43,7 +43,7 @@ if ($count == 1) {
                 <div class="mt-5">
                     <span style="font-weight:600; color: rgba(0, 8, 48, 0.47);" class="sub-text mb-5">Set Upah</span>
                 </div>
-                <input type="text" name="upah" class="input-nebeng" placeholder="Bensin cukup hidup aman...">
+                <input type="text" name="upah" class="input-nebeng" placeholder="Set upah dengan pas yaa...">
                 <div class="mt-5">
                     <span style="font-weight:600; color: rgba(0, 8, 48, 0.47);" class="sub-text mb-5">Set Lokasi</span>
                 </div>

@@ -13,8 +13,8 @@ if($cek == 1){
     $_SESSION['nama'] = $r['nama'];
     $_SESSION['saldo'] = $r['saldo'];
     $_SESSION['userid'] = $r['userid'];
-    header("location:../dashboard.php");
+    header("location:../dashboard.php?pesan=Selamat%20Datang");
 }else{
-    header("location:../login.php");
+    header("location:../login.php?pesan=Username/Password%20Salah");
 }
 ?>

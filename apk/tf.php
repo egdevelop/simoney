@@ -28,8 +28,8 @@
         <p style="font-weight: 500;  font-size:4.5vw; color: #b0b0b0;" class="mb-3">Tujuan</p>
         <form action="tf2.php" method="GET">
             <input onchange="onChangeForm()" id="inputNomor" style="width: 100%; padding: 4vw; border-radius:10px; border:solid 1px #2972FF;" type="number" name="toid" placeholder="Nomor akun tujuan...">
-            <div class="mt-3 bagde-tf">
-                <p id="nama_akun">Nomor akun tidak ditemukan</p>
+            <div id="nama-akun" style="display: none;" class="mt-3 bagde-tf">
+                <p id="nama_akun"></p>
             </div>
             <div id="formTf"></div>
           
@@ -49,9 +49,12 @@ function onChangeForm(){
                 },
                 success: function(response) {
                    if(response != "Nomor akun tidak ditemukan"){
+                       document.getElementById("nama-akun").style.display = "block";
                        document.getElementById("nama_akun").innerHTML = response;
                        document.getElementById("formTf").innerHTML = '<button style="margin-top: 40vh;" type="submit" class="button-putih-2 bg-putih btn-nebeng text-align-tengah mt-5 mb-5">Konfirmasi</button>';
+
                    }else{
+                       document.getElementById("nama-akun").style.display = "block";
                        document.getElementById("nama_akun").innerHTML = "Nomor akun tidak ditemukan";
                    }
                 },

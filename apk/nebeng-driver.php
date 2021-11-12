@@ -14,6 +14,7 @@ $jumlah = mysqli_num_rows($listClient);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css?<?php echo date('l jS \of F Y h:i:s A'); ?>">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>SIMONEY || GET IN TOUCH WITH US</title>
 </head>
 
@@ -41,31 +42,10 @@ $jumlah = mysqli_num_rows($listClient);
                 </div>
                 <i class="ri-filter-3-line biru"></i>
             </div>
-            <?php
-            while ($r = mysqli_fetch_array($listClient)) {
 
+            <div id="load-client"></div>
 
-            ?>
-                <div class="card-nebeng align-items-tengah">
-                    <img src="assets/img/client.png" alt="client">
-                    <p style="font-weight: 600;"><?= $r['namac'] ?></p>
-                    <p style="font-size:3vw; color: #9e9e9e;">1 Menit yang lalu</p>
-                    <div style="margin-left:2vw; margin-right:2vw; margin-top:3vw;" class="flex justify-content-between">
-                        <div class="nebeng-btn-biru">
-                            <a style="text-decoration: none; color:#fff;" href="server/nebeng-driver.php?clientid=<?php echo $r['clientid'] ?>">
-                                <i class="ri-check-line"></i>
-                            </a>
-                        </div>
-                        <div class="nebeng-btn-putih">
-                            <i class="ri-close-line"></i>
-                        </div>
-                    </div>
-                </div>
-            <?php
-            }
-            ?>
-
-            <a style="text-decoration: none;" href="nebeng-cuan.php">
+            <a style="text-decoration: none;" href="nebeng-cuan-update.php">
                 <div style="height: 13vw; width:92%; margin-left:3vw; margin-top:110vw;" class="button-biru-2 btn-nebeng text-align-tengah mt-10 mb-5">
                     Atur profil anda
                 </div>
@@ -89,6 +69,28 @@ $jumlah = mysqli_num_rows($listClient);
             <i class="ri-user-line"></i>
         </a>
     </div>
+    <div class="notif bg-biru" id="notif">
+        <p></p>
+    </div>
+    <script>
+        $(document).ready(function() {
+            setInterval(function() {
+                $('#load-client').load("fetch.php").fadeIn("slow");
+            }, 1000);
+        });
+        <?php
+        if(isset($_GET['pesan'])){
+    ?>
+    document.getElementById("notif").innerHTML = '<i class="ri-notification-line"></i>&ensp;<?= $_GET['pesan'] ?>';
+    document.getElementById("notif").classList.add("act-n");
+    setTimeout(()=>{
+        document.getElementById("notif").style = "animation-name: notif-a; animation-duration: 1s; transform: translateY(-20vw);"
+    },1000);
+
+    <?php
+    }
+    ?>
+    </script>
 </body>
 
 </html>

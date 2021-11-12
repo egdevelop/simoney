@@ -1,4 +1,3 @@
-
 <?php
 include "server/header.php";
 $dataKurir = mysqli_query($koneksi, "SELECT * FROM sinitip WHERE status = '1'");
@@ -30,34 +29,34 @@ $dataKurir = mysqli_query($koneksi, "SELECT * FROM sinitip WHERE status = '1'");
             <div class="flex justify-content-between mb-5">
                 <div class="flex align-items-tengah">
                     <i class="ri-search-line mr-3 biru"></i>
-                    <p>Search</p>
+                    <input class="search" type="text" placeholder="Search">
                 </div>
                 <i class="ri-filter-3-line biru"></i>
             </div>
         </div>
         <div class="konten-nebeng-client">
             <?php
-                while($r = mysqli_fetch_array($dataKurir)){ 
+            while ($r = mysqli_fetch_array($dataKurir)) {
             ?>
-            <div class="card-nenbeng-client">
-                <div class="flex align-items-tengah">
-                    <div style="width:70%;" class="flex align-items-tengah justify-content-between">
-                        <div class="text-waa">
-                            <span style="font-size: 4vw; font-weight:500;"><?= $r['nama'] ?></span>
-                            <div style="font-size: 2.5vw;" class="flex align-items-tengah">
-                                <i class="ri-map-pin-line mr-2"></i>
-                                <p><?= $r['lokasi'] ?></p>
+                <div class="card-nenbeng-client listSearch">
+                    <div class="flex align-items-tengah">
+                        <div style="width:70%;" class="flex align-items-tengah justify-content-between">
+                            <div class="text-waa">
+                                <span style="font-size: 4vw; font-weight:500;"><?= $r['nama'] ?></span>
+                                <div style="font-size: 2.5vw;" class="flex align-items-tengah">
+                                    <i class="ri-map-pin-line mr-2"></i>
+                                    <p><?= $r['lokasi'] ?></p>
+                                </div>
                             </div>
+                            <p style="font-size: 3vw;">Rp. <?= $r['upah'] ?></p>
                         </div>
-                        <p style="font-size: 3vw;">Rp. <?= $r['upah'] ?></p>
+                        <a style="text-decoration: none; color:#fff;" href="detail-kurir.php?kuririd=<?= $r['userid'] ?>" class="btn-pilih-in text-align-tengah ml-5">
+                            Pesan
+                        </a>
                     </div>
-                    <a style="text-decoration: none; color:#fff;" href="detail-kurir.php?kuririd=<?= $r['userid'] ?>" class="btn-pilih-in text-align-tengah ml-5">
-                        Pesan
-                    </a>
                 </div>
-            </div>
             <?php
-                }
+            }
             ?>
         </div>
     </div>
@@ -78,6 +77,27 @@ $dataKurir = mysqli_query($koneksi, "SELECT * FROM sinitip WHERE status = '1'");
             <i class="ri-user-line"></i>
         </a>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function($) {
+
+            $('.listSearch').each(function() {
+                $(this).attr('searchData', $(this).text().toLowerCase());
+            });
+            $('.search').on('keyup', function() {
+                var dataList = $(this).val().toLowerCase();
+                $('.listSearch').each(function() {
+                    if ($(this).filter('[searchData *= ' + dataList + ']').length > 0 || dataList.length < 1) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+
+        });
+    </script>
 </body>
 
 </html>

@@ -61,7 +61,7 @@ if(type == 'sinebeng'){
                 success: function(response) {
                     if(response == '1'){
                         console.log(response);
-                        window.location.href = url2 + "&type=sinebeng";
+                        window.location.href = url2 + "&type=sinebeng&pesan=Terhubung";
                     }else{
                         console.log(response);
                     }
@@ -81,7 +81,7 @@ if(type == 'sinebeng'){
                 success: function(response) {
                     if(response == '1'){
                         console.log(response);
-                        window.location.href = url2 + "&type=sinitip";
+                        window.location.href = url2 + "&type=sinitip&pesan=Terhubung";
                     }else{
                         console.log(response);
                     }

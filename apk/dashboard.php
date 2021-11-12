@@ -4,7 +4,6 @@ include "server/header.php";
 $dataUser = mysqli_query($koneksi, "SELECT * FROM user WHERE userid = '$_SESSION[userid]'");
 $ruser = mysqli_fetch_array($dataUser);
 
-$dataHistory = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE userid = '$_SESSION[userid]' ORDER BY id DESC");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,7 +28,7 @@ $dataHistory = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE userid = '$
             <div class="card-info-2 text-align-tengah">
                 <p class="mb-3">1 2 3 4&emsp;5 6 7 8&emsp;9 0 1 2&emsp;3 4 5 6</p>
                 <div class="flex justify-content-between">
-                    <p>FEBRIAN DRD</p>
+                    <p><?= $_SESSION['nama'] ?></p>
                     <p>09/27</p>
                 </div>
             </div>
@@ -65,45 +64,7 @@ $dataHistory = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE userid = '$
                 <span class="sub-text">🤝</span>
             </div>
             <table class="table-trx">
-                <?php
-                while ($d = mysqli_fetch_array($dataHistory)) {
-                    if ($d['type'] == 0) {
-                        $icon = "up";
-                        $des = "Uang Keluar dari Transfer";
-                    } elseif ($d['type'] == 1) {
-                        $icon = "down";
-                        $des = "Uang Masuk dari Transfer";
-                    } elseif ($d['type'] == 2){
-                        $icon = "up";
-                        $des = "Uang Keluar dari SINEBENG";
-                    } elseif ($d['type'] == 3){
-                        $icon = "down";
-                        $des = "Uang Masuk dari SINEBENG";
-                    }elseif ($d['type'] == 4){
-                        $icon = "up";
-                        $des = "Uang Keluar dari SINITIP";
-                    } elseif ($d['type'] == 5){
-                        $icon = "down";
-                        $des = "Uang Masuk dari SINITIP";
-                    }
-                ?>
-                    <tr>
-                        <td class="row-icon">
-                            <div class="badge-biru-muda-2">
-                                <i class="ri-arrow-<?= $icon ?>-s-line"></i>
-                            </div>
-                        </td>
-                        <td>
-                            <p class="trx-text mr-5"><?= $des ?></p>
-                            <p class="trx-time"><?= $d['tanggal'] ?></p>
-                        </td>
-                        <td>
-                            <p class="trx-time" id="jumlahtrx">Rp. <?= $d['jumlah'] ?></p>
-                        </td>
-                    </tr>
-                <?php
-                }
-                ?>
+              
             </table>
         </div>
 
@@ -126,8 +87,29 @@ $dataHistory = mysqli_query($koneksi, "SELECT * FROM transaksi WHERE userid = '$
             <i class="ri-user-line"></i>
         </a>
     </div>
+    <div class="notif bg-biru" id="notif">
+        <p></p>
+    </div>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
+            $(document).ready(function() {
+            setInterval(function() {
+                $('.table-trx').load("trx.php").fadeIn("slow");
+            }, 500);
+        });
+    <?php
+        if(isset($_GET['pesan'])){
+    ?>
+    document.getElementById("notif").innerHTML = '<i class="ri-notification-line"></i>&ensp;<?= $_GET['pesan'] ?>';
+    document.getElementById("notif").classList.add("act-n");
+    setTimeout(()=>{
+        document.getElementById("notif").style = "animation-name: notif-a; animation-duration: 1s; transform: translateY(-20vw);"
+    },1000);
+
+    <?php
+    }
+    ?>
     function numberWithCommas(x) {
         var parts = x.toString().split(".");
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ".");

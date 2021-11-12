@@ -1,0 +1,287 @@
+@media screen and (max-width: 780px) {
+  .body-wrapper {
+    height: fit-content;
+    overflow: hidden;
+  }
+
+  /* Navbar */
+  .content-banner {
+    height: 150vw;
+    padding-top: 40vw;
+  }
+
+  .navbar-nav {
+    margin-top: 5vw;
+    padding: 0 0;
+  }
+
+  .menu-custom {
+    padding: 0 0;
+  }
+
+  .menu-custom:hover {
+    border-top: none;
+  }
+
+  .res-button1 {
+    display: none;
+  }
+
+  .res-button2 {
+    opacity: 1;
+    margin-right: 2vw;
+  }
+
+  .fab {
+    opacity: 1;
+    font-size: 7vw;
+  }
+
+  /* Jumbotron */
+  .col-jumbotron {
+    width: 85%;
+  }
+
+  .heading1-custom {
+    font-size: 6vw;
+    font-weight: 600;
+    margin-bottom: 5vw;
+  }
+
+  .desc1 {
+    width: 100%;
+    font-size: 4vw;
+    margin-bottom: 5vw;
+  }
+
+  .img-titik {
+    height: 20vw;
+    margin-top: 20vw;
+  }
+
+  .img-titik2 {
+    height: 20vw;
+    margin-top: -50vw;
+  }
+
+  .img-hp {
+    width: 80vw;
+    height: 75vw;
+    margin-left: 6vw;
+    margin-top: -110vw;
+    object-fit: cover;
+    z-index: 9999;
+  }
+
+  .img-sip {
+    display: none;
+  }
+
+  .res-button2 {
+    height: 10vw;
+    font-weight: 600;
+  }
+
+  .fab {
+    margin-left: 4vw;
+    font-size: 5.5vw;
+  }
+
+  .container-icon {
+    display: flex;
+    align-items: center;
+  }
+
+  /* About */
+  .heading-about {
+    margin-top: 3vw;
+    font-size: 8vw;
+  }
+
+  .img-produk {
+    width: 45vw;
+    height: 100vw;
+    object-fit: cover;
+    margin-left: -20vw;
+    margin: 0 auto;
+  }
+
+  .img-fitur {
+    width: 45vw;
+    height: 100vw;
+    object-fit: cover;
+    margin-left: -20vw;
+    margin: 0 auto;
+  }
+
+  .img-fitur2 {
+    width: 58vw;
+    height: 70vw;
+  }
+
+  .img-flex {
+    margin-left: -5vw;
+  }
+
+  .img-flex2 {
+    margin-top: 15vw;
+  }
+
+  .desc-flex {
+    font-size: 3vw;
+  }
+
+  .flex-about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .heading-about2 {
+    font-size: 5vw;
+  }
+
+  .btn-download-now {
+    font-size: 3vw;
+  }
+
+  .nitip {
+    width: 50%;
+  }
+
+  .kolom-custom {
+    flex: 1;
+  }
+
+  .kolom-custom2 {
+    flex: 1;
+  }
+
+  /* Testimonials */
+  .img-testi-left {
+    margin-top: 9vw;
+  }
+
+  .span-testi {
+    font-size: 3vw;
+    text-align: center;
+  }
+
+  .img-testi-right {
+    margin-top: 9vw;
+  }
+
+  .blog-slider__img {
+    transform: translateY(-50%);
+    width: 90%;
+  }
+  .blog-slider__content {
+    margin-top: -80px;
+    text-align: center;
+    padding: 0 30px;
+  }
+  .blog-slider__pagination {
+    transform: translateX(-50%);
+    left: 50% !important;
+    top: 205px;
+    width: 100% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .blog-slider__pagination.swiper-pagination-bullets .swiper-pagination-bullet {
+    margin: 10px 10px;
+  }
+  .blog-slider__pagination .swiper-pagination-bullet-active {
+    height: 11px;
+    width: 30px;
+  }
+
+  /* Akses */
+  .akses {
+    margin-top: -30vw;
+    background-color: #4375ee;
+    max-height: 0;
+    margin-bottom: -10vw;
+  }
+
+  .desc-akses {
+    width: 80%;
+    font-size: 2vw;
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+  }
+
+  .img-akses {
+    width: 22vw;
+    height: 35vw;
+    object-fit: cover;
+    margin-left: 4vw;
+    margin-top: -28vw;
+  }
+
+  .img-bg-akses {
+    width: 50vw;
+    height: 100%;
+    object-fit: cover;
+    margin-top: -40vw;
+  }
+
+  .heading1-akses {
+    font-weight: bold;
+    color: #fff;
+    margin-top: -15vw;
+    line-height: 3.5vw;
+  }
+
+  .kanan {
+    margin-top: -10vw;
+  }
+
+  .img-titik3 {
+    height: 20vw;
+    margin-top: -10vw;
+  }
+
+  /* Footer */
+  .footer {
+    opacity: 0;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .blog-slider__img {
+    width: 95%;
+  }
+  .blog-slider__content {
+    padding: 0;
+  }
+}
+@media screen and (max-height: 500px) and (min-width: 992px) {
+  .blog-slider__img {
+    height: 270px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .nav-item > .nav-link {
+    padding: 5px 20px !important;
+    display: block !important;
+  }
+}
+
+@media only screen and (max-width: 992px) {
+  .header-inner {
+    background-color: #4375ee !important;
+  }
+  .nav-item > .nav-link {
+    color: white !important;
+  }
+  .logo {
+    color: #fff !important;
+    font-weight: 600 !important;
+  }
+  .content-banner .first-title {
+    font-size: 30px !important;
+  }
+}
