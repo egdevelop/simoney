@@ -33,10 +33,13 @@ $kode = $_GET['kode'];
             <span style="font-weight:600;" class="sub-text">Room Chat</span>
         </div>
         
-        <div class="chat-box bg-abu-muda"></div>
-        <div id="bottom-arrow" onclick="scrollToBottom()" style="display:none; right:10vw; top:55vh; position:fixed; " class="badge-biru">
+        <div class="chat-box bg-abu-muda">
+        </div>
+
+                <div id="bottom-arrow" onclick="scrollToBottom()" style="display:none; right:10vw; top:65vh; position:absolute; " class="badge-biru">
     <i style="font-size: 5vw; font-weight:600;" class="ri-arrow-down-s-line"></i>
         </div>
+
         <form action="#" class="typing-area">
             <input type="text" class="you_id" name="you_id" value="<?php echo $kode; ?>" hidden>
             <input type="text" name="message" class="input-field" placeholder="Ketikkan Pesan..." autocomplete="off">

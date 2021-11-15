@@ -9,6 +9,7 @@ if($r['status'] == 1){
     $daraTf = mysqli_query($koneksi,"SELECT * FROM pending WHERE toid = '$_SESSION[userid]' OR fromid='$_SESSION[userid]' AND ket = 'sinebeng'");
     $d = mysqli_fetch_array($daraTf);
     $tf = mysqli_query($koneksi,"UPDATE user SET saldo = saldo + '$d[jumlah]' WHERE userid = '$d[toid]'");
+    $tf2 = mysqli_query($koneksi,"UPDATE user SET saldo = saldo - '$d[jumlah]' WHERE userid = '$d[fromid]'");
     if($tf && $tf2){
         $removePending = mysqli_query($koneksi,"DELETE FROM pending WHERE toid = '$_SESSION[userid]' OR fromid='$_SESSION[userid]' AND ket = 'sinebeng'");
     }

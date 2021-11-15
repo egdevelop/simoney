@@ -1,8 +1,5 @@
 <?php
 include "server/header.php";
-
-$listClient = mysqli_query($koneksi, "SELECT * FROM nitip_client WHERE kuririd='$_SESSION[userid]'");
-$jumlah = mysqli_num_rows($listClient);
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +33,7 @@ $jumlah = mysqli_num_rows($listClient);
             <div class="flex justify-content-between mb-5">
                 <div class="flex align-items-tengah biru">
                     <i class="ri-group-fill mr-3"></i>
-                    <p><?= $jumlah ?> Orang</p>
+                    <p id="jumlah-orang"></p>
                 </div>
                 <i class="ri-filter-3-line biru"></i>
             </div>
@@ -68,10 +65,31 @@ $jumlah = mysqli_num_rows($listClient);
         </a>
     </div>
 
+        <div class="notif bg-biru" id="notif">
+        <p></p>
+    </div>
+
     <script>
+          <?php
+        if(isset($_GET['pesan'])){
+    ?>
+    document.getElementById("notif").innerHTML = '<i class="ri-notification-line"></i>&ensp;<?= $_GET['pesan'] ?>';
+    document.getElementById("notif").classList.add("act-n");
+    setTimeout(()=>{
+        document.getElementById("notif").style = "animation-name: notif-a; animation-duration: 1s; transform: translateY(-20vw);"
+    },1000);
+
+    <?php
+    }
+    ?>
         $(document).ready(function() {
             setInterval(function() {
                 $('#load-client2').load("fetch-nitip.php").fadeIn("slow");
+                <?php
+                $listClient = mysqli_query($koneksi, "SELECT * FROM nitip_client WHERE kuririd='$_SESSION[userid]'");
+                $jumlah = mysqli_num_rows($listClient);
+                ?>
+                document.getElementById("jumlah-orang").innerHTML = "<?= $jumlah ?> Orang";
             }, 1000);
         });
     </script>

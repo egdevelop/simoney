@@ -8,9 +8,8 @@ $userid = $_POST['userid'];
 $jumlah = $_POST['jumlah'];
 $id_pesanan = $_POST['id_pesanan'];
 
-$potong = mysqli_query($koneksi,"UPDATE user SET saldo = saldo - '$jumlah' WHERE userid = '$userid'");
-if($potong){
 $simpan = mysqli_query($koneksi,"INSERT INTO pending (toid,fromid,jumlah,ket)VALUES('$kuririd','$userid','$jumlah','sinitip')");
+$set_client = mysqli_query($koneksi,"UPDATE user SET nitip_status = '2' WHERE userid = '$_SESSION[userid]'");
 
 if($simpan){
     $data['href'] = "waiting.php?href=chat.php?kode=$kuririd";
@@ -18,5 +17,4 @@ if($simpan){
     echo json_encode($data);
 }else{
     echo "g0";
-}
 }

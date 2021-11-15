@@ -1,5 +1,9 @@
 <?php
 include "server/header.php";
+
+$dataUser = mysqli_query($koneksi, "SELECT * FROM user WHERE userid = '$_SESSION[userid]'");
+$ruser = mysqli_fetch_array($dataUser);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +32,7 @@ include "server/header.php";
         <br>
         <div class="text-align-tengah mb-10">
             <h1 style="color: rgba(0, 8, 48, 0.75);" id="value-money"></h1>
-            <p style="color: #3B4374; font-weight:400; font-size:3vw;">Saldo kamu sekarang&ensp;<span style="font-weight: 600;">Rp100.000</span></p>
+            <p style="color: #3B4374; font-weight:400; font-size:3vw;">Saldo kamu sekarang&ensp;<span style="font-weight: 600;" id="saldo"></span></p>
         </div>
         <br>
         <div class="pin-menu">
@@ -126,6 +130,7 @@ function keypad (a){
     }
 
 }
+document.getElementById("saldo").innerHTML = "Rp"+numberWithCommas(<?php echo $ruser['saldo'] ?>)
 </script>
 
 </html>

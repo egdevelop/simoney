@@ -32,32 +32,17 @@ $dataKurir = mysqli_query($koneksi, "SELECT * FROM sinitip WHERE status = '1'");
                     <input class="search" type="text" placeholder="Search">
                 </div>
                 <i class="ri-filter-3-line biru"></i>
+
+                <!-- <select class="price-sorting">
+                    <option>Urutkan</option>
+                    <option value="l2h">Terendah </option>
+                    <option value="h2l">Tertinggi </option>
+                </select> -->
+
             </div>
         </div>
         <div class="konten-nebeng-client">
-            <?php
-            while ($r = mysqli_fetch_array($dataKurir)) {
-            ?>
-                <div class="card-nenbeng-client listSearch">
-                    <div class="flex align-items-tengah">
-                        <div style="width:70%;" class="flex align-items-tengah justify-content-between">
-                            <div class="text-waa">
-                                <span style="font-size: 4vw; font-weight:500;"><?= $r['nama'] ?></span>
-                                <div style="font-size: 2.5vw;" class="flex align-items-tengah">
-                                    <i class="ri-map-pin-line mr-2"></i>
-                                    <p><?= $r['lokasi'] ?></p>
-                                </div>
-                            </div>
-                            <p style="font-size: 3vw;">Rp. <?= $r['upah'] ?></p>
-                        </div>
-                        <a style="text-decoration: none; color:#fff;" href="detail-kurir.php?kuririd=<?= $r['userid'] ?>" class="btn-pilih-in text-align-tengah ml-5">
-                            Pesan
-                        </a>
-                    </div>
-                </div>
-            <?php
-            }
-            ?>
+
         </div>
     </div>
     <div class="nav">
@@ -78,25 +63,63 @@ $dataKurir = mysqli_query($koneksi, "SELECT * FROM sinitip WHERE status = '1'");
         </a>
     </div>
 
+        </div>
+        <div class="notif bg-biru" id="notif">
+        <p></p>
+    </div>
+
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
-        $(document).ready(function($) {
+          <?php
+        if(isset($_GET['pesan'])){
+    ?>
+    document.getElementById("notif").innerHTML = '<i class="ri-notification-line"></i>&ensp;<?= $_GET['pesan'] ?>';
+    document.getElementById("notif").classList.add("act-n");
+    setTimeout(()=>{
+        document.getElementById("notif").style = "animation-name: notif-a; animation-duration: 1s; transform: translateY(-20vw);"
+    },1000);
 
-            $('.listSearch').each(function() {
-                $(this).attr('searchData', $(this).text().toLowerCase());
-            });
-            $('.search').on('keyup', function() {
-                var dataList = $(this).val().toLowerCase();
-                $('.listSearch').each(function() {
-                    if ($(this).filter('[searchData *= ' + dataList + ']').length > 0 || dataList.length < 1) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                });
-            });
+    <?php
+    }
+    ?>
+        $(document).ready(function() {
+            setInterval(function() {
 
+                var dataList = $('.search').val().toLowerCase();
+                $('.konten-nebeng-client').load("nitip-client-fetch.php?cari=" + dataList).fadeIn("slow");
+
+            }, 500);
         });
+        // Sort Price
+        $(document).on("change", ".price-sorting", function() {
+            var sortingMethod = $(this).val();
+            if (sortingMethod == 'l2h') {
+                sortProductsPriceAscending();
+            } else if (sortingMethod == 'h2l') {
+                sortProductsPriceDescending();
+            }
+        });
+
+        function getAmount(price) {
+            return parseFloat(price.replace('$', ''));
+        }
+
+        function sortProductsPriceAscending() {
+            var products = $('.productbox');
+            products.sort(function(a, b) {
+                return getAmount($(a).children('.price').text()) - getAmount($(b).children('.price').text())
+            });
+            $(".products-grid").html(products);
+        }
+
+        function sortProductsPriceDescending() {
+            var products = $('.productbox');
+            products.sort(function(a, b) {
+                return getAmount($(b).children('.price').text()) - getAmount($(a).children('.price').text())
+            });
+            $(".products-grid").html(products);
+        }
     </script>
 </body>
 

@@ -16,7 +16,9 @@ while ($r = mysqli_fetch_array($listClient)) {
             </a>
         </div>
         <div class="nebeng-btn-putih">
+        <a href="server/nitip-kurir-cencel.php?clientid=' . $r['clientid'] . '" style="text-decoration: none;;">
             <i class="ri-close-line"></i>
+            </a>
         </div>
     </div>
 </div>

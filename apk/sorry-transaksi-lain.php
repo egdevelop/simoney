@@ -1,5 +1,15 @@
 <?php
 include "server/header.php";
+if(isset($_GET['type'])){
+    if($_GET['type'] == "SINITIP"){
+        $gambar = "bag-bagus.png";
+        $tulisan = "Kamu sedang dalam transaksi sinitip";
+    }
+    if($_GET['type'] == "SINEBENG"){
+        $gambar = "motor-bagus.png";
+        $tulisan = "Kamu sedang dalam transaksi sinebeng";
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,10 +27,10 @@ include "server/header.php";
     <div class="card-mobile mb-5">
         <div class="text-align-tengah">
             <span style="font-weight:700; font-size:5vw;">SIMONEY</span>
-            <div class="mb-10" style="color: #fff;">.</div>
-            <h3 style="color: #232F6B;">MAAF YA!</h3>
-            <p class="mb-13" style="font-size: 3vw; color: #b0b0b0;">Fitur ini sedang dalam pengembangan</p>
-            <img class="mt-5" src="assets/img/sorry.gif" alt="loading" style="width: 60vw;" />
+            <br>
+                <img style="margin-top:20vh;" src="assets/img/<?= $gambar ?>" alt="">
+                <p style="font-size:5vw; font-weight:600; padding-top:5vw;">SELESAIKAN <span style="font-weight:600;" class="biru">DULU!!</span></p>
+                <p style="font-size:3.5vw; padding:5vw; color:rgba(64, 70, 100, 0.50);"><?= $tulisan ?></p>
         </div>
     </div>
     </div>

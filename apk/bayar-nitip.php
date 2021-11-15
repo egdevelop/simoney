@@ -52,7 +52,7 @@ $ruser = mysqli_fetch_array($dataUser);
             <div class="badge-biru mr-3">
                 Rp
             </div>
-            <h4 class="balance mr-3">18.500</h4>
+            <h4 class="balance mr-3" id="jumlah2"></h4>
         </div>
         <div class="flex justify-content-between mb-5 align-items-tengah">
             <span style="color: #b0b0b0;" class="ml-3">Makanan</span>
@@ -136,6 +136,7 @@ $ruser = mysqli_fetch_array($dataUser);
     document.getElementById('total-harga').innerHTML = "Rp."+numberWithCommas(totalHarga);
     document.getElementById('upah').innerHTML = "Rp."+numberWithCommas(<?= $d['upah'] ?>);
     document.getElementById('jumlah').innerHTML = "Rp."+numberWithCommas(totalHarga + <?= $d['upah'] ?>);
+    document.getElementById('jumlah2').innerHTML = "Rp."+numberWithCommas(totalHarga + <?= $d['upah'] ?>);
     document.getElementById('saldo').innerHTML = "Rp."+numberWithCommas(<?= $ruser['saldo'] ?>);
 
     

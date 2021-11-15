@@ -62,6 +62,8 @@ if(type == 'sinebeng'){
                     if(response == '1'){
                         console.log(response);
                         window.location.href = url2 + "&type=sinebeng&pesan=Terhubung";
+                    }else if(response == '0'){
+                        window.location.href = "nebeng-client.php?pesan=Driver%20mengambil%20Orderan%20lain";
                     }else{
                         console.log(response);
                     }
@@ -82,6 +84,8 @@ if(type == 'sinebeng'){
                     if(response == '1'){
                         console.log(response);
                         window.location.href = url2 + "&type=sinitip&pesan=Terhubung";
+                    }else if(response == '0'){
+                        window.location.href = "nitip-client.php?pesan=Driver%20mengambil%20Orderan%20lain";
                     }else{
                         console.log(response);
                     }

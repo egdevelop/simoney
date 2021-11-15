@@ -14,29 +14,12 @@
     <div class="card-mobile mb-5">
         <div class="text-align-tengah">
             <span style="font-weight:700; font-size:5vw;">SIMONEY</span>
-            <div class="mb-10" style="color: #fff;">.</div>
-            <h3 style="color: #232F6B;">PEMBAYARAN BERHASIL!</h3>
-            <p class="mb-13" style="font-size: 3vw; color: #b0b0b0;">Pembayaranmu berhasil kami proses</p>
-            <a href="chat.php"><img class="mt-5" src="assets/img/loading-2.gif" alt="loading"></a>
         </div>
+            <div class="mb-10" style="color: #fff;">.</div>
+            <h1 style="color: #232F6B; max-width:50vw; margin-left:8vw;">Pembayaran Selesai!</h1>
+            <img class="mt-5 sukses-bayar" src="assets/img/sukses-bayar.png" alt="loading">
+
     </div>
-    </div>
-    <div class="nav">
-        <a class="mr-10 abu-nav" href="dashboard.php">
-            <i class="ri-dashboard-line"></i>
-        </a>
-        <a class="mr-10 nav-act" href="nebeng.php">
-            <i class="ri-route-line"></i>
-        </a>
-        <a class="mr-10 badge-gradien-biru-2" href="sorry.php">
-            <i class="ri-qr-scan-line"></i>
-        </a>
-        <a class="mr-10 abu-nav" href="nitip.php">
-            <i class="ri-open-arm-line"></i>
-        </a>
-        <a class="mr-10 abu-nav" href="profil.php">
-            <i class="ri-user-line"></i>
-        </a>
     </div>
 </body>
 <script>

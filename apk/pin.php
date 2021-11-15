@@ -84,6 +84,9 @@ include "server/header.php";
                 Konfirmasi
             </div>
     </div>
+    <div class="notif bg-red" id="notif">
+        <p></p>
+    </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -121,6 +124,15 @@ document.getElementById("pinVerif").addEventListener("click",()=>{
                 success: function(response) {
                     if(response == 1){
                         pushAction();
+                    }else{
+                        document.getElementById("notif").innerHTML = '<i class="ri-notification-line"></i>&ensp;Pin Yang Anda Masukan Salah';
+                        document.getElementById("notif").classList.add("act-n");
+                        setTimeout(()=>{
+                            document.getElementById("notif").style = "animation-name: notif-a; animation-duration: 1s; transform: translateY(-20vw);"
+                        },1000);
+                        setTimeout(()=>{
+                            location.reload();
+                        },2000);
                     }
                 },
                 error: function() {

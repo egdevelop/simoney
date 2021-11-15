@@ -1,8 +1,5 @@
 <?php
 include "server/header.php";
-
-$listClient = mysqli_query($koneksi, "SELECT * FROM nebeng_client WHERE driverid='$_SESSION[userid]'");
-$jumlah = mysqli_num_rows($listClient);
 ?>
 
 <!DOCTYPE html>
@@ -38,7 +35,7 @@ $jumlah = mysqli_num_rows($listClient);
             <div class="flex justify-content-between mb-5">
                 <div class="flex align-items-tengah biru">
                     <i class="ri-group-fill mr-3"></i>
-                    <p><?= $jumlah ?> Orang</p>
+                    <p id="jumlah-orang"><</p>
                 </div>
                 <i class="ri-filter-3-line biru"></i>
             </div>
@@ -76,7 +73,13 @@ $jumlah = mysqli_num_rows($listClient);
         $(document).ready(function() {
             setInterval(function() {
                 $('#load-client').load("fetch.php").fadeIn("slow");
-            }, 1000);
+                 <?php
+                $listClient = mysqli_query($koneksi, "SELECT * FROM nebeng_client WHERE driverid='$_SESSION[userid]'");
+                $jumlah = mysqli_num_rows($listClient);
+                ?>
+                document.getElementById("jumlah-orang").innerHTML = "<?= $jumlah ?> Orang";
+            }, 100);
+            
         });
         <?php
         if(isset($_GET['pesan'])){

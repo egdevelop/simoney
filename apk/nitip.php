@@ -3,9 +3,13 @@ include "server/header.php";
 
 $status = mysqli_query($koneksi, "SELECT status FROM sinitip WHERE userid='$_SESSION[userid]'");
 $status1 = mysqli_query($koneksi, "SELECT nitip_status FROM user WHERE userid='$_SESSION[userid]'");
-$data = mysqli_query($koneksi, "SELECT driverid,clientid FROM nitip_client WHERE clientid='$_SESSION[userid]' OR driverid='$_SESSION[userid]'");
+$status2 = mysqli_query($koneksi, "SELECT status FROM sinebeng WHERE userid='$_SESSION[userid]'");
+$status3 = mysqli_query($koneksi, "SELECT nebeng_status FROM user WHERE userid='$_SESSION[userid]'");
+$data = mysqli_query($koneksi, "SELECT kuririd,clientid FROM nitip_client WHERE clientid='$_SESSION[userid]' OR kuririd='$_SESSION[userid]'");
 $s = mysqli_fetch_array($status);
 $s1 = mysqli_fetch_array($status1);
+$s2 = mysqli_fetch_array($status2);
+$s3 = mysqli_fetch_array($status3);
 $r = mysqli_fetch_array($data);
 if ($s != null) {
     if ($s['status'] == '1') {
@@ -19,11 +23,25 @@ if ($s != null) {
 
 if ($status1 != null) {
     if ($s1['nitip_status'] == '1') {
-        $kode = $r['driverid'];
+        $kode = $r['kuririd'];
         header("location:chat.php?kode=$kode&type=sinitip");
+    }
+    if ($s1['nitip_status'] == '2') {
+        $kode = $r['kuririd'];
+        header("location:waiting.php?href=chat.php?kode=$kode&type=sinitip");
     }
 }else{
     var_dump($status1);
+}
+if($s2 != null){
+if($s2['status'] != '0'){
+    header("location:sorry-transaksi-lain.php?type=SINEBENG");
+}
+}
+if($s3 != null){
+if($s3['nebeng_status'] != '0'){
+    header("location:sorry-transaksi-lain.php?type=SINEBENG");
+}
 }
 ?>
 

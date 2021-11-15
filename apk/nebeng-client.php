@@ -29,13 +29,13 @@ include "server/header.php";
             <div class="flex justify-content-between mb-5">
                 <div class="flex align-items-tengah">
                     <i class="ri-search-line mr-3 biru"></i>
-                    <p>Search</p>
+                    <input class="search" type="text" placeholder="Search">
                 </div>
                 <i class="ri-filter-3-line biru"></i>
             </div>
         </div>
         <div class="konten-nebeng-client">
-            
+
         </div>
     </div>
     <div class="nav">
@@ -55,14 +55,32 @@ include "server/header.php";
             <i class="ri-user-line"></i>
         </a>
     </div>
+        <div class="notif bg-biru" id="notif">
+        <p></p>
+    </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
-            $(document).ready(function() {
-            setInterval(function() {
-                $('.konten-nebeng-client').load("nebeng-client-fetch.php").fadeIn("slow");
-            }, 500);
-        });
+    $(document).ready(function() {
+        setInterval(function() {
+            
+                var dataList = $('.search').val().toLowerCase();
+                $('.konten-nebeng-client').load("nebeng-client-fetch.php?cari="+dataList).fadeIn("slow"); 
+            
+        }, 500);
+    });
+      <?php
+        if(isset($_GET['pesan'])){
+    ?>
+    document.getElementById("notif").innerHTML = '<i class="ri-notification-line"></i>&ensp;<?= $_GET['pesan'] ?>';
+    document.getElementById("notif").classList.add("act-n");
+    setTimeout(()=>{
+        document.getElementById("notif").style = "animation-name: notif-a; animation-duration: 1s; transform: translateY(-20vw);"
+    },1000);
+
+    <?php
+    }
+    ?>
 </script>
 
 </html>
