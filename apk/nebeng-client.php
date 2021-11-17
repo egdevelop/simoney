@@ -65,7 +65,8 @@ include "server/header.php";
         setInterval(function() {
             
                 var dataList = $('.search').val().toLowerCase();
-                $('.konten-nebeng-client').load("nebeng-client-fetch.php?cari="+dataList).fadeIn("slow"); 
+                dataList1 = encodeURIComponent(dataList.trim())
+                $('.konten-nebeng-client').load("nebeng-client-fetch.php?cari="+dataList1).fadeIn("slow"); 
             
         }, 500);
     });

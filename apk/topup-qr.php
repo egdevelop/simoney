@@ -17,7 +17,7 @@
             <div class="mb-10" style="color: #fff;">.</div>
             <h3 id="nominal" style="color: #232F6B;"></h3>
             <p class="mb-13" style="font-size: 3vw; color: #b0b0b0;">Ini QR CODE kamu silahkan ke kopsis dan selesaikan pembayaran</p>
-            <div style="margin-left: 2vw;">
+            <div style="margin-left: 13vw;">
                 <div id="qrcode"></div>
             </div>
             <br>
@@ -37,7 +37,7 @@
     var url = new URL(url_string);
     var qr = url.searchParams.get("qr");
     var qrjson = JSON.parse(qr);
-    new QRCode(document.getElementById("qrcode"), "https://simoney.hstki.org/apk/server/topup.php?userid=" + qrjson.userid + "&jumlah=");
+    new QRCode(document.getElementById("qrcode"), "https://simoney.hstki.org/apk/server/topup.php?userid=" + qrjson.userid + "&jumlah=" + qrjson.jumlah);
 
     function numberWithCommas(x) {
         var parts = x.toString().split(".");

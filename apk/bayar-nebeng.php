@@ -24,7 +24,7 @@ $ruser = mysqli_fetch_array($dataUser);
     <div class="card-mobile mb-5">
         <div class="text-align-tengah mb-3">
             <div class="flex mb-5">
-                <a href="detail-driver.php" style="text-decoration: none;">
+                <a href="detail-driver.php?driverid=<?= $_GET['driverid'] ?>" style="text-decoration: none;">
                     <div style="margin-right: 23vw;" class="badge-biru">
                         <i style="font-size: 5vw; font-weight:600;" class="ri-arrow-left-s-line"></i>
                     </div>

@@ -20,6 +20,7 @@ if(isset($_GET['type'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css?<?php echo date('l jS \of F Y h:i:s A'); ?>">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>SIMONEY || GET IN TOUCH WITH US</title>
 </head>
 
@@ -28,9 +29,9 @@ if(isset($_GET['type'])){
         <div class="text-align-tengah">
             <span style="font-weight:700; font-size:5vw;">SIMONEY</span>
             <br>
-                <img style="margin-top:20vh;" src="assets/img/<?= $gambar ?>" alt="">
-                <p style="font-size:5vw; font-weight:600; padding-top:5vw;">SELESAIKAN <span style="font-weight:600;" class="biru">DULU!!</span></p>
-                <p style="font-size:3.5vw; padding:5vw; color:rgba(64, 70, 100, 0.50);"><?= $tulisan ?></p>
+                <img class="animate__animated animate__pulse" style="margin-top:20vh;" src="assets/img/<?= $gambar ?>" alt="">
+                <p class="animate__animated animate__pulse" style="font-size:5vw; font-weight:600; padding-top:5vw;">SELESAIKAN <span style="font-weight:600;" class="biru">DULU!!</span></p>
+                <p class="animate__animated animate__pulse" style="font-size:3.5vw; padding:5vw; color:rgba(64, 70, 100, 0.50);"><?= $tulisan ?></p>
         </div>
     </div>
     </div>

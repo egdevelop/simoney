@@ -22,7 +22,7 @@ $ruser = mysqli_fetch_array($dataUser);
     <div class="card-mobile mb-5">
         <div class="text-align-tengah mb-5 mt-5">
             <div class="flex mb-5">
-                <a href="dashboard.php" style="text-decoration: none;">
+                <a onclick="window.history.go(-1); return false;" style="text-decoration: none;">
                     <div style="margin-right: 27vw; " class="badge-biru">
                         <i style="font-size: 5vw; font-weight:600;" class="ri-arrow-left-s-line"></i>
                     </div>
@@ -88,6 +88,9 @@ $ruser = mysqli_fetch_array($dataUser);
             </div>
         </a>
     </div>
+        <div class="notif bg-red" id="notif">
+        <p></p>
+    </div>
 </body>
 <script>
 var value = []
@@ -125,12 +128,24 @@ function keypad (a){
             fromid : <?= $_SESSION['userid'] ?>,
             jumlah : finalString,
         }
-        document.getElementById("pinAction").href = "pin.php?link=" + JSON.stringify(data);
+        document.getElementById("pinAction").href = "server/tf-verif.php?link=" + JSON.stringify(data) + "&jumlah=" + finalString + "&toid=" + data.toid;
     }else{
         document.getElementById("value-money").innerHTML = "Rp0";
 
     }
 }
+    <?php
+        if(isset($_GET['pesan'])){
+    ?>
+    document.getElementById("notif").innerHTML = '<i class="ri-notification-line"></i>&ensp;<?= $_GET['pesan'] ?>';
+    document.getElementById("notif").classList.add("act-n");
+    setTimeout(()=>{
+        document.getElementById("notif").style = "animation-name: notif-a; animation-duration: 1s; transform: translateY(-20vw);"
+    },1000);
+
+    <?php
+    }
+    ?>
 document.getElementById("saldo").innerHTML = "Rp"+numberWithCommas(<?php echo $ruser['saldo'] ?>)
 </script>
 

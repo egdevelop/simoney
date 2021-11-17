@@ -21,7 +21,7 @@
     <link rel="icon" href="assets/img/fav.png" sizes="16x16" type="image/png">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/5.4.5/css/swiper.css">
-    <title>Landing Page SIMONEY</title>
+    <title>SIMONEY || BRING A WORLD IN OUR HAND</title>
 </head>
 
 <body>

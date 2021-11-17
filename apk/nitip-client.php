@@ -87,7 +87,8 @@ $dataKurir = mysqli_query($koneksi, "SELECT * FROM sinitip WHERE status = '1'");
             setInterval(function() {
 
                 var dataList = $('.search').val().toLowerCase();
-                $('.konten-nebeng-client').load("nitip-client-fetch.php?cari=" + dataList).fadeIn("slow");
+                dataList1 = encodeURIComponent(dataList.trim())
+                $('.konten-nebeng-client').load("nitip-client-fetch.php?cari=" + dataList1).fadeIn("slow");
 
             }, 500);
         });

@@ -11,22 +11,23 @@ include "server/header.php";
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css?<?php echo date('l jS \of F Y h:i:s A'); ?>">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>SIMONEY || GET IN TOUCH WITH US</title>
 </head>
 
 <body>
     <div class="card-mobile mb-5">
         <div class="text-align-tengah mb-5 mt-5">
-            <div class="flex mb-5">
-                <a href="bayar-nebeng.php" style="text-decoration: none;">
-                    <div style="margin-right: 23vw; " class="badge-biru">
+        <div class="flex mb-5">
+                <a onclick="window.history.go(-1); return false;" style="text-decoration: none;">
+                    <div style="margin-right: 27vw;" class="badge-biru">
                         <i style="font-size: 5vw; font-weight:600;" class="ri-arrow-left-s-line"></i>
                     </div>
                 </a>
-                <span style="font-weight:700; font-size:5vw;">Masukan Pin</span>
+                <span style="font-weight:700; margin-left: -7vw; font-size:5vw;">Masukkan Pin</span>
             </div>
         </div>
-        <div class="flex justify-content-between pin-wrapper">
+        <div class="flex justify-content-between pin-wrapper" id="titik-wrap">
             <div id="titik-1" class="titik-pin bg-abu"></div>
             <div id="titik-2" class="titik-pin bg-abu"></div>
             <div id="titik-3" class="titik-pin bg-abu"></div>
@@ -127,6 +128,12 @@ document.getElementById("pinVerif").addEventListener("click",()=>{
                     }else{
                         document.getElementById("notif").innerHTML = '<i class="ri-notification-line"></i>&ensp;Pin Yang Anda Masukan Salah';
                         document.getElementById("notif").classList.add("act-n");
+                        document.getElementById("titik-wrap").classList.add("animate__animated");
+                        document.getElementById("titik-wrap").classList.add("animate__shakeX");
+                        for(var i = 1; i <= 6; i++){
+                            document.getElementById("titik-"+i).classList.add("bg-merah");
+                            document.getElementById("titik-"+i).classList.remove("bg-biru");
+                        }
                         setTimeout(()=>{
                             document.getElementById("notif").style = "animation-name: notif-a; animation-duration: 1s; transform: translateY(-20vw);"
                         },1000);

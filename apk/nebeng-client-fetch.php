@@ -1,11 +1,7 @@
 <?php
 include "server/header.php";
-if($_GET['cari'] != ''){
-$dataDriver = mysqli_query($koneksi, "SELECT * FROM sinebeng WHERE status = '1' AND nama LIKE '%$_GET[cari]%' OR tujuan LIKE '%$_GET[cari]%' OR tarif LIKE '%$_GET[cari]%'");
-}else{
-$dataDriver = mysqli_query($koneksi, "SELECT * FROM sinebeng WHERE status = '1'");
-
-}
+$value = str_replace("%20"," ","$_GET[cari]");
+$dataDriver = mysqli_query($koneksi, "SELECT * FROM sinebeng WHERE status = '1' AND (nama LIKE '%$_GET[cari]%' OR tujuan LIKE '%$_GET[cari]%' OR tarif LIKE '$_GET[cari]')");
 $jumlah = mysqli_num_rows($dataDriver);
 if($jumlah > 0){
     while ($arrDriver = mysqli_fetch_array($dataDriver)) {

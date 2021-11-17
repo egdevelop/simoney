@@ -1,10 +1,6 @@
 <?php
 include "server/header.php";
-if ($_GET['cari'] != '') {
-    $dataKurir = mysqli_query($koneksi, "SELECT * FROM sinitip WHERE status = 1 AND nama LIKE '%$_GET[cari]%' OR lokasi LIKE '%$_GET[cari]%' OR upah LIKE '%$_GET[cari]%'");
-} else {
-    $dataKurir = mysqli_query($koneksi, "SELECT * FROM sinitip WHERE status = 1");
-}
+    $dataKurir = mysqli_query($koneksi, "SELECT * FROM sinitip WHERE status = 1 AND (nama LIKE '%$_GET[cari]%' OR lokasi LIKE '%$_GET[cari]%' OR upah LIKE '$_GET[cari]')");
 $jumlah = mysqli_num_rows($dataKurir);
 if ($jumlah > 0) {
     while ($arrKurir = mysqli_fetch_array($dataKurir)) {

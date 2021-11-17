@@ -26,21 +26,30 @@
         </div>
         <br>
         <p style="font-weight: 500;  font-size:4.5vw; color: #b0b0b0;" class="mb-3">Tujuan</p>
-        <form action="tf2.php" method="GET">
             <input onchange="onChangeForm()" id="inputNomor" style="width: 100%; padding: 4vw; border-radius:10px; border:solid 1px #2972FF;" type="number" name="toid" placeholder="Nomor akun tujuan...">
             <div id="nama-akun" style="display: none;" class="mt-3 bagde-tf">
                 <p id="nama_akun"></p>
             </div>
             <div id="formTf"></div>
-          
-        </form>
     </div>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<?php
+include "server/header.php";
 
+$dataUser = mysqli_query($koneksi, "SELECT * FROM user WHERE userid = '$_SESSION[userid]'");
+$ruser = mysqli_fetch_array($dataUser);
+
+?>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script>
-    
+
 function onChangeForm(){
+    if (document.getElementById("inputNomor").value == <?= $_SESSION["userid"]; ?>) {
+        document.getElementById("nama-akun").style.display = "block";
+        document.getElementById("nama_akun").innerHTML = "Ini nomor akun anda sendiri";
+        document.getElementById("formTf").innerHTML = '<button style="margin-top: 40vh; display:none;" class="button-putih-2 bg-putih btn-nebeng text-align-tengah mt-5 mb-5">Konfirmasi</button>';
+    }
+    else {
     $.ajax({
                 url: "server/cekid.php",
                 type: "POST",
@@ -51,8 +60,7 @@ function onChangeForm(){
                    if(response != "Nomor akun tidak ditemukan"){
                        document.getElementById("nama-akun").style.display = "block";
                        document.getElementById("nama_akun").innerHTML = response;
-                       document.getElementById("formTf").innerHTML = '<button style="margin-top: 40vh;" type="submit" class="button-putih-2 bg-putih btn-nebeng text-align-tengah mt-5 mb-5">Konfirmasi</button>';
-
+                       document.getElementById("formTf").innerHTML = '<a href="tf2.php?toid='+ document.getElementById("inputNomor").value +'"><button type="button" style="margin-top: 40vh;" class="button-putih-2 bg-putih btn-nebeng text-align-tengah mt-5 mb-5">Konfirmasi</button></a>'; 
                    }else{
                        document.getElementById("nama-akun").style.display = "block";
                        document.getElementById("nama_akun").innerHTML = "Nomor akun tidak ditemukan";
@@ -63,7 +71,7 @@ function onChangeForm(){
                 }
 
             });
-}
+}}
 </script>
 
 </html>
