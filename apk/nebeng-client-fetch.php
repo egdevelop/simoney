@@ -1,11 +1,21 @@
-<?php
-include "server/header.php";
-$value = str_replace("%20"," ","$_GET[cari]");
-$dataDriver = mysqli_query($koneksi, "SELECT * FROM sinebeng WHERE status = '1' AND (nama LIKE '%$_GET[cari]%' OR tujuan LIKE '%$_GET[cari]%' OR tarif LIKE '$_GET[cari]')");
-$jumlah = mysqli_num_rows($dataDriver);
-if($jumlah > 0){
-    while ($arrDriver = mysqli_fetch_array($dataDriver)) {
-        echo '
+    <?php
+    include "server/header.php";
+    $sort_option = "";
+    if (isset($_GET['sort_numeric'])) {
+        if ($_GET['sort_numeric'] == "low-high") {
+            $sort_option = "ASC";
+        } elseif ($_GET['sort_numeric'] == "high-low") {
+            $sort_option = "DESC";
+        }
+    }
+
+    $value = str_replace("%20", " ", "$_GET[cari]");
+    $dataDriver = mysqli_query($koneksi, "SELECT * FROM sinebeng WHERE status = '1' AND (nama LIKE '%$_GET[cari]%' OR tujuan LIKE '%$_GET[cari]%' OR tarif LIKE '$_GET[cari]') ORDER BY tarif $sort_option ");
+    $jumlah = mysqli_num_rows($dataDriver);
+
+    if ($jumlah > 0) {
+        while ($arrDriver = mysqli_fetch_array($dataDriver)) {
+            echo '
                     <div class="card-nenbeng-client">
                         <div class="flex align-items-tengah">
                             <div style="width:70%;" class="flex align-items-tengah justify-content-between">
@@ -25,9 +35,9 @@ if($jumlah > 0){
                         </div>
                     </div>
                     ';
-    }
-}else{
-    echo'
+        }
+    } else {
+        echo '
     <br>
     <br>
     <div class="text-align-tengah" style="">
@@ -36,4 +46,4 @@ if($jumlah > 0){
                 <p style="font-size:3.5vw; padding:5vw; color:rgba(64, 70, 100, 0.50);">Yah.... , Belum ada driver yang bisa diajak nebeng saat ini</p>
             </div>
     ';
-}
+    }

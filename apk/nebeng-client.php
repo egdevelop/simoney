@@ -31,7 +31,23 @@ include "server/header.php";
                     <i class="ri-search-line mr-3 biru"></i>
                     <input class="search" type="text" placeholder="Search">
                 </div>
-                <i class="ri-filter-3-line biru"></i>
+                <form action="" method="GET">
+                    <div class="flex align-items-tengah">
+                        <i class="ri-filter-3-line biru"></i>
+                        <select name="sort_numeric" class="sort_rang">
+                            <option value="">--Select Option--</option>
+                            <option value="low-high" <?php if (isset($_GET['sort_numeric']) && $_GET['sort_numeric'] == "low-high") {
+                                                            echo "selected";
+                                                        } ?>> Low - High</option>
+                            <option value="high-low" <?php if (isset($_GET['sort_numeric']) && $_GET['sort_numeric'] == "high-low") {
+                                                            echo "selected";
+                                                        } ?>> High - Low</option>
+                        </select>
+                        <button type="submit" class="input-group-text btn btn-primary" id="basic-addon2">
+                            Filter
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
         <div class="konten-nebeng-client">
@@ -55,29 +71,30 @@ include "server/header.php";
             <i class="ri-user-line"></i>
         </a>
     </div>
-        <div class="notif bg-biru" id="notif">
+    <div class="notif bg-biru" id="notif">
         <p></p>
     </div>
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script>
     $(document).ready(function() {
         setInterval(function() {
-            
-                var dataList = $('.search').val().toLowerCase();
-                dataList1 = encodeURIComponent(dataList.trim())
-                $('.konten-nebeng-client').load("nebeng-client-fetch.php?cari="+dataList1).fadeIn("slow"); 
-            
+
+            var dataList = $('.search').val().toLowerCase();
+            dataList1 = encodeURIComponent(dataList.trim())
+            $('.konten-nebeng-client').load("nebeng-client-fetch.php?cari=" + dataList1).fadeIn("slow");
+
         }, 500);
     });
-      <?php
-        if(isset($_GET['pesan'])){
+    <?php
+    if (isset($_GET['pesan'])) {
     ?>
-    document.getElementById("notif").innerHTML = '<i class="ri-notification-line"></i>&ensp;<?= $_GET['pesan'] ?>';
-    document.getElementById("notif").classList.add("act-n");
-    setTimeout(()=>{
-        document.getElementById("notif").style = "animation-name: notif-a; animation-duration: 1s; transform: translateY(-20vw);"
-    },1000);
+        document.getElementById("notif").innerHTML = '<i class="ri-notification-line"></i>&ensp;<?= $_GET['pesan'] ?>';
+        document.getElementById("notif").classList.add("act-n");
+        setTimeout(() => {
+            document.getElementById("notif").style = "animation-name: notif-a; animation-duration: 1s; transform: translateY(-20vw);"
+        }, 1000);
 
     <?php
     }

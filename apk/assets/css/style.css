@@ -277,6 +277,9 @@ a:active {
 .justify-content-between {
   justify-content: space-between;
 }
+.justify-content-around {
+  justify-content: space-around;
+}
 .text-align-tengah {
   text-align: center;
 }
@@ -779,10 +782,17 @@ a:active {
   pointer-events: auto;
 }
 .search {
+  width: 32vw;
   border: none;
   border-left: solid 1px #4375ef;
   padding-left: 3vw;
   padding-top: 1vw;
   padding-bottom: 1vw;
   font-size: 4vw;
+}
+.sort-rang {
+  width: 5vw;
+}
+.ri-filter-3-line {
+  margin-right: 2vw;
 }

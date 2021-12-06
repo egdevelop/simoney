@@ -2,7 +2,7 @@
 <head>
     <title>Html-Qrcode Demo</title>
 <body>
-    <div id="qr-reader" style="width:500px"></div>
+    <div id="qr-reader" style="width:100vw; height:100vh;"></div>
     <div id="qr-reader-results"></div>
 </body>
 <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
@@ -33,7 +33,7 @@
         }
 
         var html5QrcodeScanner = new Html5QrcodeScanner(
-            "qr-reader", { fps: 10, qrbox: 250 });
+            "qr-reader", { fps: 10, qrbox: 500 });
         html5QrcodeScanner.render(onScanSuccess);
     });
 </script>

@@ -77,7 +77,7 @@ $ruser = mysqli_fetch_array($dataUser);
         <a class="mr-10 abu-nav" href="nebeng.php">
             <i class="ri-route-line"></i>
         </a>
-        <a class="mr-10 badge-gradien-biru-2" href="sorry.php">
+        <a class="mr-10 badge-gradien-biru-2" href="qr-scan.php">
             <i class="ri-qr-scan-line"></i>
         </a>
         <a class="mr-10 abu-nav" href="nitip.php">
